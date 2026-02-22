@@ -1,0 +1,53 @@
+/**
+* Description : This is an iteration of the colorful card game, "Mantis" in C Programming Language. This is in fulfillment of our major requirement for CCPROG2 to
+*               showcase the programming concepts learned throughout the course. // Unfinished description
+* Author/s : Dy, Jasmine Yzabelle Young
+*           Reyes, Kaitlyn Raine Panergo
+* Section : S22A, S13A
+* Last Modified : 2/22/2026
+* Acknowledgments : <list of references used in the making of this project> // uwu
+*/
+
+//--------------------------------------------------
+// Preprocessor Directives
+//--------------------------------------------------
+
+#include <stdio.h>
+#include <string.h>
+
+//--------------------------------------------------
+// Definitions
+//--------------------------------------------------
+
+#include "defs.c" // Organizer file for user-defined functions such as macros and dialogue.
+ #include "game.c" // 
+// #include "logic.c"
+#include "menu.c" // Separate file to help control the functions of the game.
+
+
+
+int main () {
+    int gameState = 0;
+
+    gameMenu(&gameState);
+
+    while(gameState == 1) {
+        printf("Start the game broooo...\n");
+        while (getchar() != '\n');
+        gameState = 0;
+    }
+
+    return 0;
+}
+
+/**
+* This is to certify that this project is my/our own work, based on my/our personal
+* efforts in studying and applying the concepts learned. I/We have constructed the
+* functions and their respective algorithms and corresponding code by myself/ourselves.
+* The program was run, tested, and debugged by my/our own efforts. I/We further certify
+* that I/we have not copied in part or whole or otherwise plagiarized the work of other
+* students and/or persons, nor did I employ the use of AI in any part of the deliverable.
+*
+* Dy, Jasmine Yzabelle Young (DLSU ID# <number>)
+* Reyes, Kaitlyn Raine Panergo (DLSU ID# 12525006)
+*/
