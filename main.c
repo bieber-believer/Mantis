@@ -20,21 +20,37 @@
 //--------------------------------------------------
 
 #include "defs.c" // Organizer file for user-defined functions such as macros and dialogue.
- #include "game.c" // 
-// #include "logic.c"
+#include "game.c" // Structure for the entire logic of the game.
 #include "menu.c" // Separate file to help control the functions of the game.
 
 
 
 int main () {
-    int gameState = 0;
+    int gameState = 1;
 
-    gameMenu(&gameState);
+    printf("Mantis: imagine a really cool ASCII title was here. But we're gonna prioritize that once we're done\nwith the entire logic.\n");
+    printf("Press Enter to continue...\n");
+    while (getchar() != '\n');
 
-    while(gameState == 1) {
-        printf("Start the game broooo...\n");
-        while (getchar() != '\n');
-        gameState = 0;
+    display4Choices(NEW_GAME, TOP_PLAYERS, SETTINGS, EXIT);
+    
+    while(gameState) {
+    switch (options(4)) {
+        case 1: // Starts a new game
+            *startGame = 1;
+            break;
+        case 2: // Displays Leaderboard
+            // topPlayers();
+            break;
+        case 3: // Displays Settings
+            // settings();
+            break;
+        case 4: // Ends Program
+            gameState = 0;
+            break;
+        default:
+            break;
+        }
     }
 
     return 0;
