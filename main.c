@@ -14,6 +14,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 //--------------------------------------------------
 // Definitions
@@ -21,6 +23,7 @@
 
 #include "defs.c" // Organizer file for user-defined functions such as macros and dialogue.
 #include "game.c" // Structure for the entire logic of the game.
+#include "mechanics.c" // Structure for the mechanics of the game.
 #include "menu.c" // Separate file to help control the functions of the game.
 
 
@@ -37,12 +40,15 @@ int main () {
     while(gameState) {
     switch (options(4)) {
         case 1: // Starts a new game
-            *startGame = 1;
+            system("cls");
+            // gameLoop()
             break;
         case 2: // Displays Leaderboard
+            system("cls");
             // topPlayers();
             break;
         case 3: // Displays Settings
+            system("cls");    
             // settings();
             break;
         case 4: // Ends Program

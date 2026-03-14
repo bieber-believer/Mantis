@@ -1,3 +1,11 @@
+/******************************************************************************
+ *  Description     : Organizer for game mechanics.
+ *  Author/s        : Dy, Jasmine Yzabelle
+ *                    Reyes, Kaitlyn Raine
+ *  Section         : S22A, S13A
+ *  Last Modified   : 3 / 14 / 2026
+ ******************************************************************************/
+ 
 void lineBreak() {
     int i;
     for(i=0; i<BOARDER_SIZE_HORIZONTAL; i++)
