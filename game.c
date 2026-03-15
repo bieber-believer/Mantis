@@ -3,7 +3,7 @@
  *  Author/s        : Dy, Jasmine Yzabelle
  *                    Reyes, Kaitlyn Raine
  *  Section         : S22A, S13A
- *  Last Modified   : 3 / 14 / 2026
+ *  Last Modified   : 3 / 15 / 2026
  ******************************************************************************/
 
 
@@ -16,7 +16,7 @@
     @return     User input, given that the input is valid.
 */
 
-#idndef GAME_C
+#ifndef GAME_C
 #define GAME_C
 
 int options(int n) {
