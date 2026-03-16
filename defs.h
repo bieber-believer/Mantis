@@ -24,6 +24,7 @@
 #define MAX_PLAYERS 50              // program can handle max 50
 #define MIN_GAME_PLAYERS 3          // minimum players needed to play a game
 #define MAX_GAME_PLAYERS 6          // maximum players for a game
+#define TOTAL_CARDS 84              // Each color card (based on the front) has 12 cards, making a total of 84 cards in a standard Mantis game deck.
 
 /**
  * Represents a 2D point
