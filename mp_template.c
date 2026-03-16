@@ -76,6 +76,14 @@ float getAverage(int arr[], int arrSize)
 int main()
 {
   /* your project code */
+  Player players[MAX_PLAYERS];  //array of players
+  int numPlayers = 0;           //number of registered players
+
+  Card deck[TOTAL_CARDS];
+  int deckSize;
+
+  GamePlayer gamePlayers[MAX_GAME_PLAYERS];
+  int numGamePlayers = 0;
 
   // Original array of coordinates to demonstrate the use of the shuffle function
   Coordinate ogPointsArray[ARR_SIZE];
