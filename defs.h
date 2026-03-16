@@ -62,10 +62,28 @@ typedef struct{
   int highestScore;
 }Player;
 
+/**
+ * Represents a card from mantis.txt
+ */
 typedef struct{
   char front;   // The actual color of the card
   char back[4]; // The colors it could possible be
   int point;    // The points of the card
 }Card;
+
+/**
+ * The Players state during a game
+ */
+typedef struct{
+  Player *player;
+  int red;
+  int orange;
+  int yellow;
+  int green;
+  int blue; 
+  int indigo;
+  int violet;
+  int score;
+}GamePlayer;
 
 #endif // DEFS_H; Include this to prevent redefinition error
