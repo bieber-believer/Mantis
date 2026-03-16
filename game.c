@@ -57,7 +57,31 @@ void tryToSteal()
 
 }
 
+/**
+ * 
+ */
+void displayGameState()
+{
+
+}
+
 void shuffleAndDeal()
+{
+
+}
+
+/**
+ * 
+ */
+Card drawCard()
+{
+
+}
+
+/**
+ * 
+ */
+int checkWinner()
 {
 
 }
@@ -69,5 +93,5 @@ void gameStart()
 
 void showResults()
 {
-    
+
 }
