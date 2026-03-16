@@ -52,6 +52,14 @@ void displayTop10ByScore()
 }
 
 /**
+ * Asks user how they wanna view the top 10 players
+ */
+void displayTop10()
+{
+    
+}
+
+/**
  * Allows the user to change the wining points and shuffle seed
  */
 void changeSettings()
