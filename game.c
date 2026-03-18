@@ -1,11 +1,16 @@
 /******************************************************************************
- *  Description     : Organizer for game logic.
+ *  Description     : Container for utility functions such as input handling and basic operations.
  *  Author/s        : Dy, Jasmine Yzabelle
  *                    Reyes, Kaitlyn Raine
  *  Section         : S22A, S13A
  *  Last Modified   : 3 / 14 / 2026
  ******************************************************************************/
 
+
+
+
+#ifndef GAME_C
+#define GAME_C
 
 /*
     This function validates or invalidates user input when asked to pick an option. Prints an
@@ -15,9 +20,6 @@
 
     @return     User input, given that the input is valid.
 */
-
-#idndef GAME_C
-#define GAME_C
 
 int options(int n) {
     int choice, validChoice;
@@ -39,21 +41,14 @@ int options(int n) {
 }
 
 
-/**
- * Displays the array of coordinates
- * @param points The array of coordinates to be displayed
- * @param arrSize The size of the array
- */
- void displayCoodinates(Coordinate points[], int arrSize)
- {
-   // NOTE: This file includes defs.h, which provides access to the
-   //       Coordinate structure definition.
- 
-   for (int i = 0; i < arrSize; i++)
-     printf("(%d, %d)  ", points[i].x, points[i].y);
- 
-   printf("\n\n");
+
+ void createPlayer() {
+
+
  }
+
+
+
 
  /**
  * Copies the contents of one array of coordinates to another

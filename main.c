@@ -31,6 +31,8 @@
 int main () {
     int gameState = 1;
 
+    // FILE *ptrLeaderboard;
+
     printf("Mantis: imagine a really cool ASCII title was here. But we're gonna prioritize that once we're done\nwith the entire logic.\n");
     printf("Press Enter to continue...\n");
     while (getchar() != '\n');
@@ -41,15 +43,19 @@ int main () {
     switch (options(4)) {
         case 1: // Starts a new game
             system("cls");
-            // gameLoop()
+            // addPlayer();
+            // gameLoop();
             break;
         case 2: // Displays Leaderboard
             system("cls");
             // topPlayers();
+            // ptrLeaderboard = fopen("ptrLeaderboard.txt", "r");
+
             break;
         case 3: // Displays Settings
             system("cls");    
             // settings();
+            enter();
             break;
         case 4: // Ends Program
             gameState = 0;

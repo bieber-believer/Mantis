@@ -68,5 +68,10 @@ typedef struct{
 //--------------------------------------------------
 // Function Prototypes
 //--------------------------------------------------
+int options(int n);
+void displayCoodinates(Coordinate points[], int arrSize);
+void copyCoordinates(Coordinate dest[], Coordinate src[], int arrSize);
+float getAverage(int arr[], int arrSize);
+
 
 #endif // DEFS_H; Include this to prevent redefinition error
