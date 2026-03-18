@@ -239,6 +239,8 @@ void displayTop10(Player players[], Player topWins[], Player topScore[], int num
  * Allows the user to change the wining points and shuffle seed
  * 
  * @param currSettings The current game settings to be changed
+ * 
+ * @pre initRandom has been called already
  */
 void changeSettings(Settings *currSettings)
 {
@@ -257,6 +259,7 @@ void changeSettings(Settings *currSettings)
         printf("Change Settings?\n");
         printf("[1] Winning Points\n");
         printf("[2] Shuffle Seed\n");
+        printf("[3] Reset to Default\n");
         printf("[0] Back to Main Menu\n\n");
         printf(">> ");
         scanf("%d", &choice);
@@ -275,6 +278,12 @@ void changeSettings(Settings *currSettings)
                 printf(">> ");
                 scanf("%d", &currSettings->seed);
                 while(getchar() != '\n');
+                break;
+            case 3:
+                currSettings->winningPoints = 20;
+                currSettings->seed = randomInt();
+                printf("Press any key...\n");
+                getchar();
                 break;
             case 0:
                 loop = 0;
