@@ -85,67 +85,72 @@ int main()
   GamePlayer gamePlayers[MAX_GAME_PLAYERS]; // array of the players currently playing
   int numGamePlayers = 0;                   // number of players playing
 
-  // Original array of coordinates to demonstrate the use of the shuffle function
-  Coordinate ogPointsArray[ARR_SIZE];
-  // For demonstration purposes, this will be used to store a copy of the original array of coordinates before shuffling
-  Coordinate cpPointsArray[ARR_SIZE];
-  int currentArrSize = 0;
+  Settings currSettings;                   // current settings of the game
+  currSettings.winningPoints = 20;         // default points needed to win the game
+  initRandom();                            // initialize the random number generator
+  currSettings.seed = randomInt();        // default seed value
 
-  // Populate the original array
-  for (currentArrSize = 0; currentArrSize < 5; currentArrSize++)
-  {
-    ogPointsArray[currentArrSize].x = currentArrSize + 1;
-    ogPointsArray[currentArrSize].y = currentArrSize + 1;
-  }
+  // // Original array of coordinates to demonstrate the use of the shuffle function
+  // Coordinate ogPointsArray[ARR_SIZE];
+  // // For demonstration purposes, this will be used to store a copy of the original array of coordinates before shuffling
+  // Coordinate cpPointsArray[ARR_SIZE];
+  // int currentArrSize = 0;
 
-  // Sample call of a function from helpers_2.c to initialize random number generator
-  initRandom();
+  // // Populate the original array
+  // for (currentArrSize = 0; currentArrSize < 5; currentArrSize++)
+  // {
+  //   ogPointsArray[currentArrSize].x = currentArrSize + 1;
+  //   ogPointsArray[currentArrSize].y = currentArrSize + 1;
+  // }
 
-  // Sample call of a function from helpers_2.c to get a random seed
-  int seed = randomInt();
+  // // Sample call of a function from helpers_2.c to initialize random number generator
+  // initRandom();
 
-  // Sample call of a function from helpers_1.c to display initial array
-  printf("Initial array:\n  ");
-  displayCoodinates(ogPointsArray, currentArrSize);
+  // // Sample call of a function from helpers_2.c to get a random seed
+  // int seed = randomInt();
 
-  printf("----- Different seeds produce different shuffle arrangements -----\n\n");
+  // // Sample call of a function from helpers_1.c to display initial array
+  // printf("Initial array:\n  ");
+  // displayCoodinates(ogPointsArray, currentArrSize);
 
-  // Copy original array to preserve it for future shuffling
-  copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
-  // Sample call of a function from helpers_2.c to shuffle the array
-  shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), seed);
+  // printf("----- Different seeds produce different shuffle arrangements -----\n\n");
 
-  // Sample call of a function from helpers_1.c to display shuffled array
-  printf("Shuffled array (seed: %d)\n  ", seed);
-  displayCoodinates(cpPointsArray, currentArrSize);
+  // // Copy original array to preserve it for future shuffling
+  // copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
+  // // Sample call of a function from helpers_2.c to shuffle the array
+  // shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), seed);
 
-  // Copy original array to preserve it for future shuffling
-  copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
+  // // Sample call of a function from helpers_1.c to display shuffled array
+  // printf("Shuffled array (seed: %d)\n  ", seed);
+  // displayCoodinates(cpPointsArray, currentArrSize);
 
-  // Shuffle again with a different random seed
-  seed = randomInt();
-  shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), seed);
-  printf("Shuffled array (seed: %d)\n  ", seed);
-  displayCoodinates(cpPointsArray, currentArrSize);
+  // // Copy original array to preserve it for future shuffling
+  // copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
 
-  // Providing the same seed produces the same shuffle arrangement
-  printf("----- Same seed produces the same shuffle arrangement -----\n\n");
+  // // Shuffle again with a different random seed
+  // seed = randomInt();
+  // shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), seed);
+  // printf("Shuffled array (seed: %d)\n  ", seed);
+  // displayCoodinates(cpPointsArray, currentArrSize);
 
-  // Copy original array to preserve it for future shuffling
-  copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
+  // // Providing the same seed produces the same shuffle arrangement
+  // printf("----- Same seed produces the same shuffle arrangement -----\n\n");
 
-  // Shuffle with seed 999
-  shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), 999);
-  printf("Shuffled array (seed: 999):\n  ");
-  displayCoodinates(cpPointsArray, currentArrSize);
+  // // Copy original array to preserve it for future shuffling
+  // copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
 
-  // Copy original array to preserve it for future shuffling
-  copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
+  // // Shuffle with seed 999
+  // shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), 999);
+  // printf("Shuffled array (seed: 999):\n  ");
+  // displayCoodinates(cpPointsArray, currentArrSize);
 
-  // Shuffle with seed 999 again
-  shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), 999);
-  printf("Shuffled array (seed: 999):\n  ");
-  displayCoodinates(cpPointsArray, currentArrSize);
+  // // Copy original array to preserve it for future shuffling
+  // copyCoordinates(cpPointsArray, ogPointsArray, currentArrSize);
+
+  // // Shuffle with seed 999 again
+  // shuffle(cpPointsArray, currentArrSize, sizeof(Coordinate), 999);
+  // printf("Shuffled array (seed: 999):\n  ");
+  // displayCoodinates(cpPointsArray, currentArrSize);
 
   return 0;
 }
