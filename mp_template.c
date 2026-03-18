@@ -4,7 +4,7 @@
  *                    <student2 full name (last name, first name)>
  *  Section         : S22A
  *  Last Modified   : March 16, 2026
- *  Acknowledgments : <list of references used in the making of this project>
+ *  Acknowledgments : https://www.geeksforgeeks.org/c/format-specifiers-in-c/
  ******************************************************************************/
 
 /* ----- preprocessor directives ----- */
