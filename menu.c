@@ -62,15 +62,54 @@ void displayTop10()
 /**
  * Allows the user to change the wining points and shuffle seed
  */
-void changeSettings()
+void changeSettings(Settings *currSettings)
 {
+    int loop = 1;
+    int choice;
 
+    while(loop == 1)
+    {
+        fflush(stdin);
+        printf("Settings:\n");
+        printf("Winning Points: %d points ", currSettings->winningPoints);
+        printf("(Default: 20 points)\n");
+        printf("Shuffle Seed: %d ", currSettings->seed);
+        printf("(Default: Random)\n"); 
+
+        printf("Change Settings?\n");
+        printf("[1] Winning Points\n");
+        printf("[2] Shuffle Seed\n");
+        printf("[0] Back to Main Menu\n\n");
+        printf(">> ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("\nNew Winning Points?\n");
+            printf(">> ");
+            scanf("%d", currSettings->winningPoints);
+            break;
+        case 2:
+            printf("\nNew Shuffle Seed?\n");
+            printf(">> ");
+            scanf("%d", currSettings->seed);
+            break;
+        case 0:
+            loop = 0;
+            break;
+        default:
+            printf("Invalid input. Try again.");
+            break;
+        }
+    }
+    
 }
 
 /**
  * The main menu of the game
  */
-void mainMenu()
+void mainMenu(Settings *currSettings)
 {
     int loop = 1; // variable to keep the loop going
     int choice;  // where users choice will be stored
@@ -98,13 +137,17 @@ void mainMenu()
                 getchar();
                 break;
             case 3:
-                changeSettings();
+                system("cls");
+                changeSettings(currSettings);
                 printf("Press any key...\n");
                 getchar();
                 break;
             case 0:
                 printf("May the force be with you. Bye!");
                 loop = 0; // set loop to 0 to break out the loop
+                break;
+            default:
+                printf("Invalid input. Try again.");
         }
     }
 }
