@@ -45,12 +45,24 @@ void mantisToStruct(Card deck[], int *deckSize)
 
 /**
  * Read the players.txt file and store it in a struct
+ * 
+ * @param players The struct array where the registered players will be stored
+ * @param numPlayers The pointer that will update the number of registered players
  */
 void playersToStruct(Player players[], int *numPlayers)
 {
+  int i;
+  FILE *fp;
 
+  fp=fopen("players.txt", "r");
+
+  for(i = 0; i < MAX_PLAYERS; i++){
+    fscanf(fp, "%s %d %d", players[i].name, players[i].wins, players[i].highestScore);
+    *numPlayers += 1;
+  }
+
+  fclose(fp);
 }
-
 /**
  * 
  */
