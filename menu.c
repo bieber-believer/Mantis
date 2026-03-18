@@ -92,11 +92,13 @@ void changeSettings(Settings *currSettings)
                 printf("\nNew Winning Points?\n");
                 printf(">> ");
                 scanf("%d", &currSettings->winningPoints);
+                while(getchar() != '\n');
                 break;
             case 2:
                 printf("\nNew Shuffle Seed?\n");
                 printf(">> ");
                 scanf("%d", &currSettings->seed);
+                while(getchar() != '\n');
                 break;
             case 0:
                 loop = 0;
@@ -145,7 +147,6 @@ void mainMenu(Settings *currSettings)
                 getchar();
                 break;
             case 3:
-                system("cls");
                 changeSettings(currSettings);
                 break;
             case 0:
@@ -154,6 +155,8 @@ void mainMenu(Settings *currSettings)
                 break;
             default:
                 printf("Invalid input. Try again.");
+                printf("Press any key...\n");
+                getchar();
         }
     }
 }
