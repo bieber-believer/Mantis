@@ -105,6 +105,9 @@ int main()
   Player players[MAX_PLAYERS];  // array of players
   int numPlayers = 0;           // number of registered players
 
+  Player top10Wins[MAX_PLAYERS]; //array that has the list of players from highest wins to lowest
+  Player top10Score[MAX_PLAYERS]; //array that has the lsit of players from the highest score to lowest
+
   Card deck[TOTAL_CARDS];      // array of cards
   int deckSize = 0;            // size of the deck
 
