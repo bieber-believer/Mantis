@@ -39,22 +39,46 @@ void newGame()
  * Sorts the players by their wins in descending order
  * 
  * @param players The array with all the players
- * @param top10Wins The array where the top 10 players will be stored
+ * @param topWins The array where the top 10 players will be stored
  * @param numPlayers The number of players that are registered
  */
-void sortByWins(Player players[], Player top10Wins[], int numPlayers)
+void sortByWins(Player players[], Player topWins[], int numPlayers)
 {
+    int i, j, max;
+    Player temp;
 
+    //put all the registered players in topWins
+    for(i = 0; i < numPlayers; i++)
+        topWins[i] = players[i];
+
+    //start sorting
+    for(i = 0; i < numPlayers - 1; i++)
+    {
+        max = i;
+
+        for(j= i + 1; j < numPlayers; j++)
+        {
+            if(players[j].wins > players[max].wins)
+            max = j;
+        }
+
+        if(max != i)
+        {
+            temp = topWins[i];
+            topWins[i] = topWins[max];
+            topWins[max] = temp;
+        }
+    }
 }
 
 /**
  * Sorts the players by their score in descending order
  * 
  * @param players The array with all the players
- * @param top10Score The array where the top 10 players will be stored
+ * @param topScore The array where the top 10 players will be stored
  * @param numPlayers The number of players that are registered
  */
-void sortByScore(Player players[], Player top10Score[], int numPlayers)
+void sortByScore(Player players[], Player topScore[], int numPlayers)
 {
 
 }
