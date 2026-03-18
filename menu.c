@@ -61,6 +61,8 @@ void displayTop10()
 
 /**
  * Allows the user to change the wining points and shuffle seed
+ * 
+ * @param currSettings The current game settings to be changed
  */
 void changeSettings(Settings *currSettings)
 {
@@ -69,7 +71,7 @@ void changeSettings(Settings *currSettings)
 
     while(loop == 1)
     {
-        fflush(stdin);
+        system("cls");
         printf("Settings:\n");
         printf("Winning Points: %d points ", currSettings->winningPoints);
         printf("(Default: 20 points)\n");
@@ -82,32 +84,37 @@ void changeSettings(Settings *currSettings)
         printf("[0] Back to Main Menu\n\n");
         printf(">> ");
         scanf("%d", &choice);
-
+        while(getchar() != '\n');
+      
         switch (choice)
         {
-        case 1:
-            printf("\nNew Winning Points?\n");
-            printf(">> ");
-            scanf("%d", currSettings->winningPoints);
-            break;
-        case 2:
-            printf("\nNew Shuffle Seed?\n");
-            printf(">> ");
-            scanf("%d", currSettings->seed);
-            break;
-        case 0:
-            loop = 0;
-            break;
-        default:
-            printf("Invalid input. Try again.");
-            break;
+            case 1:
+                printf("\nNew Winning Points?\n");
+                printf(">> ");
+                scanf("%d", &currSettings->winningPoints);
+                break;
+            case 2:
+                printf("\nNew Shuffle Seed?\n");
+                printf(">> ");
+                scanf("%d", &currSettings->seed);
+                break;
+            case 0:
+                loop = 0;
+                break;
+            default:
+                printf("Invalid input. Try again.\n");
+                while(getchar() != '\n');
+                printf("Press any key...\n");
+                getchar();
+                break;
         }
     }
-    
 }
 
 /**
  * The main menu of the game
+ * 
+ * @param currSetting The current game settings
  */
 void mainMenu(Settings *currSettings)
 {
@@ -115,7 +122,7 @@ void mainMenu(Settings *currSettings)
     int choice;  // where users choice will be stored
     while(loop == 1)
     {
-        fflush(stdin); //clear the stream
+        system("cls");
         displayTitle();
         printf("Main Menu\n");
         printf("[1] New Game\n");
@@ -125,6 +132,7 @@ void mainMenu(Settings *currSettings)
 
         printf(">> ");
         scanf("%d", &choice);
+        while(getchar() != '\n');
 
         switch(choice)
         {
@@ -139,8 +147,6 @@ void mainMenu(Settings *currSettings)
             case 3:
                 system("cls");
                 changeSettings(currSettings);
-                printf("Press any key...\n");
-                getchar();
                 break;
             case 0:
                 printf("May the force be with you. Bye!");
