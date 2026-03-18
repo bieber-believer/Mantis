@@ -58,11 +58,11 @@ void sortByWins(Player players[], Player topWins[], int numPlayers)
 
         for(j= i + 1; j < numPlayers; j++)
         {
-            if(players[j].wins > players[max].wins)
+            if(topWins[j].wins > topWins[max].wins)
             max = j;
         }
 
-        if(max != i)
+        if(i != max)
         {
             temp = topWins[i];
             topWins[i] = topWins[max];
@@ -80,6 +80,29 @@ void sortByWins(Player players[], Player topWins[], int numPlayers)
  */
 void sortByScore(Player players[], Player topScore[], int numPlayers)
 {
+    int i, j, max;
+    Player temp;
+
+    //store the players in the top score
+    for(i = 0; i < numPlayers; i++)
+        topScore[i] = players[i];
+
+    //start sorting
+    for(i = 0; i < numPlayers - 1; i++)
+    {
+        max = i;
+
+        for(j= i + 1; j < numPlayers; j++)
+            if(topScore[j].highestScore > topScore[max].highestScore)
+                max = j;
+        
+        if(i != max)
+        {
+            temp = topScore[i];
+            topScore[i] = topScore[max];
+            topScore[max] = temp;
+        }
+    }
 
 }
 
