@@ -87,4 +87,12 @@ typedef struct{
   int score;
 }GamePlayer;
 
+/**
+ * The settings of the game
+ */
+typedef struct{
+  int winningPoints;
+  int seed;
+}Settings;
+
 #endif // DEFS_H; Include this to prevent redefinition error
