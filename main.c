@@ -76,6 +76,6 @@ int main () {
 * that I/we have not copied in part or whole or otherwise plagiarized the work of other
 * students and/or persons, nor did I employ the use of AI in any part of the deliverable.
 *
-* Dy, Jasmine Yzabelle Young (DLSU ID# <number>)
+* Dy, Jasmine Yzabelle Young (DLSU ID# 12504254)
 * Reyes, Kaitlyn Raine Panergo (DLSU ID# 12525006)
 */

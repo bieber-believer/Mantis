@@ -43,6 +43,9 @@
 //--------------------------------------------------
 typedef char User[37];
 
+/**
+ * Player Information
+ */
 typedef struct{
     User name;
     int wins;
@@ -68,10 +71,8 @@ typedef struct{
 //--------------------------------------------------
 // Function Prototypes
 //--------------------------------------------------
-int options(int n);
-void displayCoodinates(Coordinate points[], int arrSize);
-void copyCoordinates(Coordinate dest[], Coordinate src[], int arrSize);
-float getAverage(int arr[], int arrSize);
-
+int getNumPlayers();
+void registerPlayer(Player player[], int* playerCount);
+void playerSelection(Player players[], int* numRegPlayer, Player playing[]);
 
 #endif // DEFS_H; Include this to prevent redefinition error
