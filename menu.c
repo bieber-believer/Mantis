@@ -290,6 +290,10 @@ void changeSettings(Settings *currSettings)
 /**
  * The main menu of the game
  * 
+ * @param players The array of registered players
+ * @param topWins The array where the players are sorted by their wins
+ * @param topScore The array where the players are sorted by their highest scores
+ * @param numPlayers The number of registered players
  * @param currSetting The current game settings
  */
 void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlayers, Settings *currSettings)
