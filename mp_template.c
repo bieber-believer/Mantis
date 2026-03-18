@@ -23,16 +23,30 @@
 
 /**
  * Reads the mantis.txt file and stores it in a struct
+ * 
+ * @param deck The struct array where the cards will be stored
+ * @param deckSize The pointer that will update the size of the deck
  */
-void mantisToStruct()
+void mantisToStruct(Card deck[], int *deckSize)
 {
+  int i;
+  FILE *fp;
+  fp = fopen("mantis.txt", "r");
 
+  *deckSize = 0;
+
+  for(i = 0; i < TOTAL_CARDS; i++){
+    fscanf(fp,"%c | %3s %d", &deck[i].front, deck[i].back, &deck[i].point);
+    *deckSize += 1;
+  }
+
+  fclose(fp);
 }
 
 /**
  * Read the players.txt file and store it in a struct
  */
-void playersToStruct()
+void playersToStruct(Player players[], int *numPlayers)
 {
 
 }
