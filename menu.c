@@ -1,5 +1,5 @@
 /******************************************************************************
- *  Description     : This function handles the menu and player selection
+ *  Description     : This function handles the menu
  *  Author/s        : <student1 full name (last name, first name)>
  *                    <student2 full name (last name, first name)>
  *  Section         : S22A
@@ -92,7 +92,7 @@ void sortByScore(Player players[], Player topScore[], int numPlayers)
     {
         max = i;
 
-        for(j= i + 1; j < numPlayers; j++)
+        for(j = i + 1; j < numPlayers; j++)
             if(topScore[j].highestScore > topScore[max].highestScore)
                 max = j;
         
@@ -103,31 +103,136 @@ void sortByScore(Player players[], Player topScore[], int numPlayers)
             topScore[max] = temp;
         }
     }
-
 }
 
 /**
- * Display the top 10 Players with the highest win  
+ * Display the top 10 Players with the highest win
+ * 
+ * @param players Array of all registered players
+ * @param topWins Array where the sorted players get stored
+ * @param numPlayers Number of registered players
  */
-void displayTop10ByWins()
+void displayTop10ByWins(Player players[], Player topWins[], int numPlayers)
 {
+    int i;
 
+    sortByWins(players, topWins, numPlayers);
+
+    printf("Top 10 Players with the highest wins:\n\n");
+    printf("------------------------------------------------------------------\n");
+    printf("%-10s %-36s %-10s %-10s\n", "Rank", "Username", "Wins", "Score");
+    printf("------------------------------------------------------------------\n");
+
+    if(numPlayers > 10)
+    {
+        for(i = 0; i < 10; i++)
+        {
+            printf("%-10d %-36s %-10d %-10d\n", i+1, topWins[i].name, topWins[i].wins, topWins[i].highestScore);
+        }
+    }
+    else
+    {
+        for(i = 0; i < numPlayers; i++)
+        {
+            printf("%-10d %-36s %-10d %-10d\n", i+1, topWins[i].name, topWins[i].wins, topWins[i].highestScore);
+        }
+    }
 }
 
 /**
  * Display the top 10 Players with the highest score  
+ * 
+ * @param players Array of registered players
+ * @param topScore Array where the sorted players gets stored
+ * @param numPlayers Number of registered players
  */
-void displayTop10ByScore()
+void displayTop10ByScore(Player players[], Player topScore[], int numPlayers)
 {
+    int i;
 
+    sortByScore(players, topScore, numPlayers);
+
+    printf("Top 10 Players with the highest score:\n\n");
+    printf("------------------------------------------------------------------\n");
+    printf("%-10s %-36s %-10d %-10d\n", "Rank", "Username", "Wins", "Score");
+    printf("------------------------------------------------------------------\n");
+
+    if(numPlayers > 10)
+    {
+        for(i = 0; i < 10; i++)
+        {
+            printf("%-10d %-36s %-10d %-10d\n", i+1, topScore[i].name, topScore[i].wins, topScore[i].highestScore);
+        }
+    }
+    else
+    {
+        for(i = 0; i < numPlayers; i++)
+        {
+            printf("%-10d %-36s %-10d %-10d\n", i+1, topScore[i].name, topScore[i].wins, topScore[i].highestScore);
+        }
+    }
 }
 
 /**
- * Asks user how they wanna view the top 10 players
+ * Asks user how they wanna view the top 10 players then displays the top 10 of their chosen choice
+ * 
+ * @param players Array of registered players
+ * @param topWins Array where the players with the highest wins are stored in descending order
+ * @param topScore Array where the players with the highest scores are stored in descending order
+ * @param numPlayers Number of registered players
  */
-void displayTop10()
+void displayTop10(Player players[], Player topWins[], Player topScore[], int numPlayers)
 {
-    
+    int loop = 1;
+    int choice;
+
+    while(loop == 1)
+    {
+        if(numPlayers == 0)
+        {
+            system("cls");
+            printf("No player has played :(\n\n");
+            printf("Press any key...\n");
+            getchar();
+            loop = 0;
+        }
+        else
+        {
+            system("cls");
+            printf("View top players by:\n");
+            printf("[1] Wins\n");
+            printf("[2] Highest Score\n");
+            printf("[0] Back to Main Menu\n\n");
+            printf(">> ");
+            scanf("%d", &choice);
+            while(getchar() != '\n');
+
+            switch(choice)
+            {
+                case 1:
+                    system("cls");
+                    displayTop10ByWins(players, topWins, numPlayers);
+                    printf("\nPress any key to go back...\n");
+                    getchar();
+                    loop = 0; // user goes back to main menu
+                    break;
+                case 2:
+                    system("cls");
+                    displayTop10ByScore(players, topScore, numPlayers);
+                    printf("\nPress any key to go back...\n");
+                    getchar();
+                    loop = 0; // user goes back to main menu
+                    break;
+                case 0:
+                    loop = 0;
+                    break;
+                default:
+                    printf("Invalid input. Try again.\n");
+                    printf("\nPress any key to go back...\n");
+                    getchar();
+            }
+        }
+    }
 }
 
 /**
@@ -176,10 +281,8 @@ void changeSettings(Settings *currSettings)
                 break;
             default:
                 printf("Invalid input. Try again.\n");
-                while(getchar() != '\n');
                 printf("Press any key...\n");
                 getchar();
-                break;
         }
     }
 }
@@ -189,7 +292,7 @@ void changeSettings(Settings *currSettings)
  * 
  * @param currSetting The current game settings
  */
-void mainMenu(Settings *currSettings)
+void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlayers, Settings *currSettings)
 {
     int loop = 1; // variable to keep the loop going
     int choice;  // where users choice will be stored
@@ -213,7 +316,7 @@ void mainMenu(Settings *currSettings)
                 newGame();
                 break;
             case 2:
-                displayTop10();
+                displayTop10(players, topWins, topScore, numPlayers);
                 printf("Press any key...\n");
                 getchar();
                 break;
