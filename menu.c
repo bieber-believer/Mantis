@@ -154,7 +154,7 @@ void displayTop10ByScore(Player players[], Player topScore[], int numPlayers)
 
     printf("Top 10 Players with the highest score:\n\n");
     printf("------------------------------------------------------------------\n");
-    printf("%-10s %-36s %-10d %-10d\n", "Rank", "Username", "Wins", "Score");
+    printf("%-10s %-36s %-10s %-10s\n", "Rank", "Username", "Wins", "Score");
     printf("------------------------------------------------------------------\n");
 
     if(numPlayers > 10)
