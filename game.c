@@ -57,11 +57,54 @@ int usernameExists(Player players[], int numPlayers, User name)
 }
 
 /**
- * Registers a new player
+ * Registers a new player to a Players array and add them to players.txt
+ * 
+ * @param players The array of registered players
+ * @param numPlayers The number of reigstered players that will be updated
  */
-void reigsterPlayer()
+void reigsterPlayer(Player players[], int *numPlayers)
 {
+    int i;
+    int loop, exists;
+    FILE *fp;
+    User newUsername;
 
+    while(loop == 1)
+    {   
+        if(*numPlayers >= MAX_PLAYERS)
+        {
+            printf("Can't register. Max number of players reached.\n");
+            loop = 0;
+        }
+        else
+        {
+            printf("Enter username (max 36 characters): ");
+            scanf("%36s", newUsername);
+            while(getchar() != '\n');
+
+            //check if it exists
+            exists = usernameExists(players, *numPlayers, newUsername);
+
+            if(exists == 1)
+                printf("Username already exists. Try again.\n");
+            else
+            {
+                //add to array
+                strcpy(players[*numPlayers].name, newUsername);
+                players[*numPlayers].wins = 0;
+                players[*numPlayers].highestScore = 0;
+
+                //add to txt file
+                fp = fopen(PLAYER_FILE, "a");
+                fprintf(fp, "%s %d %d", newUsername, 0, 0);
+                fclose(fp);
+
+                //update the number of players
+                *numPlayers += 1;
+                printf("Player %s registered! Welcome!\n");
+            }
+        }
+    }
 }
 
 /**
