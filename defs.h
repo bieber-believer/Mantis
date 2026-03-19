@@ -3,7 +3,7 @@
  *  Author/s        : Dy, Jasmine Yzabelle
  *                    Reyes, Kaitlyn Raine
  *  Section         : S22A, S13A
- *  Last Modified   : 3 / 14 / 2026
+ *  Last Modified   : 3 / 19 / 2026
  ******************************************************************************/
 
 #ifndef DEFS_H // Include this to prevent redefinition error
@@ -13,6 +13,40 @@
 // Game User Interface
 //--------------------------------------------------
 #define BOARDER_SIZE_HORIZONTAL 20
+
+
+//--------------------------------------------------
+// Files
+//--------------------------------------------------
+#define PLAYER_DATA "data\\players.txt"
+#define PLAYER_STATS "data\\stats.txt"
+#define LEADERBOARD "data\\leaderboard.txt"
+
+//--------------------------------------------------
+// Numerical Macros
+//--------------------------------------------------
+#define PI 3.1415
+#define ARR_SIZE 10
+#define MAX_USER 37
+#define MAX_PLAYERS 50
+
+
+//--------------------------------------------------
+// User-defined Typedefs
+//--------------------------------------------------
+typedef char User[MAX_USER];
+
+
+//--------------------------------------------------
+// Player Information
+//--------------------------------------------------
+
+typedef struct{
+  User name;
+  int wins;
+  int highestScore;
+} Player;
+
 
 //--------------------------------------------------
 // Pre-defined Typedefs
@@ -37,27 +71,6 @@
    int year;  // The year
  } Date;
 
-
-//--------------------------------------------------
-// User-defined Typedefs
-//--------------------------------------------------
-typedef char User[37];
-
-/**
- * Player Information
- */
-typedef struct{
-    User name;
-    int wins;
-    int highestScore;
-} Player;
-
-//--------------------------------------------------
-// Numerical Macros
-//--------------------------------------------------
-#define PI 3.1415
-#define ARR_SIZE 10
-
 //--------------------------------------------------
 // Text Macros
 //--------------------------------------------------
@@ -72,7 +85,5 @@ typedef struct{
 // Function Prototypes
 //--------------------------------------------------
 int getNumPlayers();
-void registerPlayer(Player player[], int* playerCount);
-void playerSelection(Player players[], int* numRegPlayer, Player playing[]);
 
 #endif // DEFS_H; Include this to prevent redefinition error

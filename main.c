@@ -4,7 +4,7 @@
 * Author/s : Dy, Jasmine Yzabelle Young
 *           Reyes, Kaitlyn Raine Panergo
 * Section : S22A, S13A
-* Last Modified : 2/22/2026
+* Last Modified : 3 /19/ 2026
 * Acknowledgments : <list of references used in the making of this project> // uwu
 */
 
@@ -21,7 +21,7 @@
 // Definitions
 //--------------------------------------------------
 
-#include "defs.c" // Organizer file for user-defined functions such as macros and dialogue.
+#include "defs.h" // Organizer file for user-defined functions such as macros and dialogue.
 #include "game.c" // Structure for the entire logic of the game.
 #include "mechanics.c" // Structure for the mechanics of the game.
 #include "menu.c" // Separate file to help control the functions of the game.
@@ -29,9 +29,20 @@
 
 
 int main () {
+    /* VARIABLES */
+    Player playerList[MAX_PLAYERS];
+    Player currentPlayers[MAX_PLAYERS];
+    
+    /* GAME STATE */
     int gameState = 1;
+    int playerListCount = 0;
+    
+    int numPlayers;
+    int playerCount = 0;
 
     // FILE *ptrLeaderboard;
+    FILE *fPlayers;
+    FILE *fStats;
 
     printf("Mantis: imagine a really cool ASCII title was here. But we're gonna prioritize that once we're done\nwith the entire logic.\n");
     printf("Press Enter to continue...\n");
@@ -40,11 +51,26 @@ int main () {
     display4Choices(NEW_GAME, TOP_PLAYERS, SETTINGS, EXIT);
     
     while(gameState) {
-    switch (options(4)) {
+    switch (options(1,4)) {
         case 1: // Starts a new game
+            fPlayers = fopen(PLAYER_DATA, "r");
+            fStats = fopen(PLAYER_STATS, "r");
+            loadPlayers(&playerListCount, playerList, fPlayers, fStats); // loads players
             system("cls");
-            // addPlayer();
-            // gameLoop();
+
+            // Sanity check; feel free to comment out as needed.
+            printf("TESTING LOAD PLAYERS:\n");
+            for(int i=0;i<playerListCount;i++) {
+                printf("%s ", playerList[i].name);
+                printf("%d ", playerList[i].wins);
+                printf("%d\n", playerList[i].highestScore);
+            } 
+            printf("\nPlayerCount: %d\n", playerListCount);
+            
+            // @todo: get number of players playing then
+            numPlayers = getNumPlayers();
+
+            
             break;
         case 2: // Displays Leaderboard
             system("cls");
