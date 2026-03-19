@@ -46,9 +46,20 @@ void reigsterPlayer()
 /**
  * Let's the user select which player will be playing
  */
-void playerSelection()
+void playerSelection(int numGamePlayers, int numPlayers)
 {
+    int i, j;
 
+    getNumPlaying(&numGamePlayers);
+
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        printf("Select Player %d\n", i+1);
+        printf("[0] Add new player");
+
+        for(j = 0; j < numPlayers; j++)
+            printf("[%d] %s\n", j+1);
+    }
 }
 
 /**
