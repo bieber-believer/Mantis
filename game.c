@@ -101,7 +101,7 @@ void registerPlayer(Player players[], int *numPlayers)
 
                 //update the number of players
                 *numPlayers += 1;
-                printf("Player %s registered! Welcome!\n");
+                printf("%s registered! Welcome!\n", newUsername);
 
                 //exit loop
                 loop = 0;
