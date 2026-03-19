@@ -119,6 +119,9 @@ int main()
   initRandom();                            // initialize the random number generator
   currSettings.seed = randomInt();        // default seed value
 
+  FILE *fOut;
+  fOut = fopen(PLAYER_FILE, "a");
+
   // // Original array of coordinates to demonstrate the use of the shuffle function
   // Coordinate ogPointsArray[ARR_SIZE];
   // // For demonstration purposes, this will be used to store a copy of the original array of coordinates before shuffling
