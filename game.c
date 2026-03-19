@@ -65,7 +65,7 @@ int usernameExists(Player players[], int numPlayers, User name)
 void reigsterPlayer(Player players[], int *numPlayers)
 {
     int i;
-    int loop, exists;
+    int loop = 1, exists = 0;
     FILE *fp;
     User newUsername;
 
@@ -111,22 +111,16 @@ void reigsterPlayer(Player players[], int *numPlayers)
 }
 
 /**
- * Let's the user select which player will be playing
+ * Let's the user select which players will be playing
+ * 
+ * @param players The array of reigstered players
+ * @param numPlayers The number of registered players
+ * @param gamePlayers The array where players who will be playing will be stored
+ * @param numGamePlayers The number of players playing
  */
-void playerSelection(int numGamePlayers, int numPlayers)
+void playerSelection(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers)
 {
-    int i, j;
-
-    getNumPlaying(&numGamePlayers);
-
-    for(i = 0; i < numGamePlayers; i++)
-    {
-        printf("Select Player %d\n", i+1);
-        printf("[0] Add new player");
-
-        for(j = 0; j < numPlayers; j++)
-            printf("[%d] %s\n", j+1);
-    }
+   
 }
 
 /**
