@@ -46,7 +46,14 @@ void getNumPlaying(int *numGamePlayers)
  */
 int usernameExists(Player players[], int numPlayers, User name)
 {
+    int i;
+    int exists = 0;
 
+    for(i = 0; i < numPlayers; i++)
+        if(strcmp(name, players[i].name) == 0)
+            exists =1;
+
+    return exists;
 }
 
 /**
