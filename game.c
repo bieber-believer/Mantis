@@ -36,6 +36,20 @@ void getNumPlaying(int *numGamePlayers)
 }
 
 /**
+ * Checks if a username already exists
+ * 
+ * @param players The list of players
+ * @param numPlayer The number of registered players
+ * @param name The username to check
+ * 
+ * @return 1 if username exists, 0 otherwise
+ */
+int usernameExists(Player players[], int numPlayers, User name)
+{
+
+}
+
+/**
  * Registers a new player
  */
 void reigsterPlayer()
