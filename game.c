@@ -62,7 +62,7 @@ int usernameExists(Player players[], int numPlayers, User name)
  * @param players The array of registered players
  * @param numPlayers The number of reigstered players that will be updated
  */
-void reigsterPlayer(Player players[], int *numPlayers)
+void registerPlayer(Player players[], int *numPlayers)
 {
     int i;
     int loop = 1, exists = 0;
