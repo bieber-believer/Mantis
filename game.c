@@ -262,25 +262,31 @@ int getColorIndex(char color)
  * @param gameDeck The game deck to draw from
  * @param gameDeckSize number of cards in the deck
  */
-void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer player)
+void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player)
 {
     Card drawnCard = drawCard(gameDeck, gameDeckSize);
-    int exist = hasColor(drawnCard, player);
+    int exist = hasColor(drawnCard, *player);
     int colorIndex = getColorIndex(drawnCard.front);
 
-    printf("Resolving turn for %s...\n", player.player->name);
+    printf("Resolving turn for %s...\n", player->player->name);
     printf("Drawn Card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
 
-    if(hasColor == 1)
+    if(exist == 1)
     {
-        printf("%s has (%d) %c card/s worth a total of (%d) pt/s\n", player.player->name, drawnCard.front, player.tankPoints[colorIndex]);
-        player.tankPoints[colorIndex] += drawnCard.point;
-        printf("+%d point/s to player's score pile\n", player.tankPoints[colorIndex]);
+        printf("%s has (%d) %c card/s worth a total of (%d) pt/s\n", player->player->name, player->tank[colorIndex], drawnCard.front, player->tankPoints[colorIndex]);
+        //update the score
+        player->score += player->tankPoints[colorIndex] + drawnCard.point;
+        printf("+%d point/s to player's score pile\n", player->score);
+
+        //reset the tank
+        player->tank[colorIndex] = 0;
+        player->tankPoints[colorIndex] = 0;
     }
     else
     {
-        printf("%s has no %c cards...\n", player.player->name, drawnCard.front);
+        printf("%s has no %c cards...\n", player->player->name, drawnCard.front);
         printf("Adding drawn card to player's tank\n");
+        addToTank(player, drawnCard);
     }
 
     printf("Press any key...\n");
