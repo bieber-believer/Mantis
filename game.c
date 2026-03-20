@@ -135,7 +135,7 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
    int registered; // 1 if player has been successfully registered
    int numSelected = 0; // the number of players that has been selected
    int choice;
-   int i;
+   int i, j;
 
    //set picked variable in players to 0
    for(i = 0; i < *numPlayers; i++)
@@ -212,16 +212,11 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
 
    //initialize gamePlayer tank
    for(i = 0; i < numGamePlayers; i++)
-   {
-    gamePlayers[i].red = 0;
-    gamePlayers[i].orange = 0;
-    gamePlayers[i].yellow = 0;
-    gamePlayers[i].green = 0;
-    gamePlayers[i].blue = 0;
-    gamePlayers[i].indigo = 0;
-    gamePlayers[i].violet = 0;
-    gamePlayers[i].score = 0;
-   }
+    for(j = 0; j < 7; j++)
+    {
+        gamePlayers[i].tank[j] = 0;
+        gamePlayers[i].tankPoints[j] = 0;
+    }
 }
 
 /**
