@@ -25,9 +25,8 @@
  * Reads the mantis.txt file and stores it in a struct
  * 
  * @param deck The struct array where the cards will be stored
- * @param n The total number of cards
  */
-void mantisToStruct(Card deck[], int n)
+void mantisToStruct(Card deck[])
 {
   int i;
   FILE *fp;
@@ -53,7 +52,7 @@ void playersToStruct(Player players[], int *numPlayers)
 
   fp=fopen("players.txt", "r");
 
-  for(i = 0; i < MAX_PLAYERS && feof(fp) != 0; i++){
+  for(i = 0; i < MAX_PLAYERS && feof(fp) == 0; i++){
     fscanf(fp, "%s %d %d", players[i].name, &players[i].wins, &players[i].highestScore);
     *numPlayers += 1;
   }
@@ -130,7 +129,7 @@ int main()
   int gameDeckSize;           //cards remaining in the current game
 
   //load data from files
-  mantisToStruct(deck, TOTAL_CARDS);
+  mantisToStruct(deck);
   playersToStruct(players, &numPlayers);
 
   //call main menu
