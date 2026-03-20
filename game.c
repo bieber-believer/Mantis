@@ -67,7 +67,6 @@ int usernameExists(Player players[], int numPlayers, User name)
  */
 void registerPlayer(Player players[], int *numPlayers, int *success)
 {
-    int i;
     int loop = 1, exists = 0;
     FILE *fp;
     User newUsername;
@@ -231,7 +230,8 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
  */
 int hasColor(Card card, GamePlayer player)
 {
-    return player.tank[getColorIndex(card.front)] > 0;
+    int index = getColorIndex(card.front);
+    return player.tank[index] > 0;
 }
 
 /**
