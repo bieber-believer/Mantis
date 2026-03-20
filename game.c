@@ -546,7 +546,6 @@ int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, 
  */
 void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings)
 {
-    int i;
     int choice;
     int winnderIndex = -1;
     int currentPlayerIndex = 0;
