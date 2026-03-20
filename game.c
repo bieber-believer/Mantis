@@ -277,13 +277,16 @@ void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer player)
 {
     Card drawnCard = drawCard(gameDeck, gameDeckSize);
     int exist = hasColor(drawnCard, player);
+    int colorIndex = getColorIndex(drawnCard.front);
 
     printf("Resolving turn for %s...\n", player.player->name);
     printf("Drawn Card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
 
     if(hasColor == 1)
     {
-        printf("%s has (%d) %c card/s worth a total of (%d) pt/s\n", player.player->name);
+        printf("%s has (%d) %c card/s worth a total of (%d) pt/s\n", player.player->name, drawnCard.front, player.tankPoints[colorIndex]);
+        player.tankPoints[colorIndex] += drawnCard.point;
+        printf("+%d point/s to player's score pile\n", player.tankPoints[colorIndex]);
     }
     else
     {
@@ -372,41 +375,9 @@ Card drawCard(Card gameDeck[], int *gameDeckSize)
  */
 void addToTank(GamePlayer *gamePlayer, Card card)
 {
-    if(card.front == 'R')
-    {
-        gamePlayer->red++;
-        gamePlayer->tankPoints[0] += card.point;
-    }
-    else if(card.front == 'O')
-    {
-        gamePlayer->orange++;
-        gamePlayer->tankPoints[1] += card.point;
-    }
-    else if(card.front == 'Y')
-    {
-        gamePlayer->yellow++;
-        gamePlayer->tankPoints[2] += card.point;
-    }
-    else if(card.front == 'G')
-    {
-        gamePlayer->green++;
-        gamePlayer->tankPoints[3] += card.point;
-    }
-    else if(card.front == 'B')
-    {
-        gamePlayer->blue++;
-        gamePlayer->tankPoints[4] += card.point;
-    }
-    else if(card.front == 'I')
-    {
-        gamePlayer->indigo++;
-        gamePlayer->tankPoints[5] += card.point;
-    }
-    else if(card.front == 'V')
-    {
-        gamePlayer->violet++;
-        gamePlayer->tankPoints[6] += card.point;
-    }
+    int index = getColorIndex(card.front);
+    gamePlayer->tank[index]++;
+    gamePlayer->tankPoints[index] += card.point;
 }
 
 /**
