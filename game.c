@@ -530,9 +530,70 @@ int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, 
     return winnerIndex;
 }
 
-void gameStart()
+/**
+ * Handles the turn order and checks for a winner after each turn then displays the resiults when the game ends
+ * 
+ * @param players The array of registered players
+ * @param numPlayers Number of registered players
+ * @param gamePlayers The array of players playing the game
+ * @param numGamePlayers Number of players playing
+ * @param deck The original unshuffled deck of cards
+ * @param gameDeck The shuffled deck used in the game
+ * @param gameDeckSize Number of cards remaining in the deck
+ * @param currSettings The current game settings
+ */
+void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings)
 {
+    int i;
+    int choice;
+    int winnderIndex = -1;
+    int currentPlayerIndex = 0;
 
+    //shuffle and deal cards
+    shuffleAndDeal(deck, gameDeck, gameDeckSize,gamePlayers, numGamePlayers, currSettings.seed);
+
+    //loop
+    while(winnderIndex == -1)
+    {
+        system("cls");
+
+        //display game state
+        displayGameState(gamePlayers, numGamePlayers, gameDeck, *gameDeckSize);
+
+        //ask player want they wanna do
+        printf("Player %s, what would you like to do?\n", gamePlayers[currentPlayerIndex].player->name);
+        printf("\t[1] Try to Score\n");
+        printf("\t[2] Try to Steal\n\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        while(getchar() != '\n');
+
+        if(choice == 1)
+            tryToScore(gameDeck, gameDeckSize, &gamePlayers[currentPlayerIndex]);
+        else if(choice == 2)
+            tryToSteal(gameDeck, gameDeckSize, gamePlayers, numGamePlayers, currentPlayerIndex);
+        else
+        {
+            printf("Invalid input. Try again.\n");
+            printf("Press any key...\n");
+            getchar();
+        }
+
+        //go to next play only if a valid choice was made
+        if(choice == 1 || choice == 2)
+        {
+            winnderIndex = checkWinner(gamePlayers, numGamePlayers, *gameDeckSize, currSettings.winningPoints);
+            
+            if(currentPlayerIndex == numGamePlayers - 1)
+                currentPlayerIndex = 0;
+            else
+                currentPlayerIndex++;
+        }
+    }
+
+    system("cls");
+    showResults(gamePlayers, numGamePlayers, winnderIndex);
+    savePlayers(players, numPlayers);
 }
 
 /**
