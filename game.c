@@ -217,6 +217,7 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
     {
         gamePlayers[i].tank[j] = 0;
         gamePlayers[i].tankPoints[j] = 0;
+        gamePlayers[i].score = 0;
     }
 }
 
