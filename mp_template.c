@@ -109,7 +109,6 @@ int main()
   Player topScore[MAX_PLAYERS]; //array that has the list of players from the highest score to lowest
 
   Card deck[TOTAL_CARDS];      // array of cards
-  int deckSize = 0;            // size of the deck
 
   GamePlayer gamePlayers[MAX_GAME_PLAYERS]; // array of the players currently playing
   int numGamePlayers = 0;                   // number of players playing
@@ -118,6 +117,9 @@ int main()
   currSettings.winningPoints = 20;         // default points needed to win the game
   initRandom();                            // initialize the random number generator
   currSettings.seed = randomInt();        // default seed value
+
+  Card gameDeck[TOTAL_CARDS]; //the deck of cards that will be used in the game
+  int gameDeckSize;           //cards remaining in the current game
 
   // // Original array of coordinates to demonstrate the use of the shuffle function
   // Coordinate ogPointsArray[ARR_SIZE];
