@@ -8,6 +8,7 @@
 
  /* ----- preprocessor directives ----- */
 #include <stdio.h>
+#include <string.h>
 
 #include "defs.h"
 #include "helpers_1.c"
@@ -283,7 +284,7 @@ void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player)
         printf("%s has (%d) %c card/s worth a total of (%d) pt/s!\n", player->player->name, player->tank[colorIndex], drawnCard.front, player->tankPoints[colorIndex]);
         //update the score
         player->score += player->tankPoints[colorIndex] + drawnCard.point;
-        printf("+%d point/s to player's score pile!\n", player->score);
+        printf("+%d point/s to player's score pile!\n", player->tankPoints[colorIndex] + drawnCard.point);
 
         //reset the tank
         player->tank[colorIndex] = 0;
