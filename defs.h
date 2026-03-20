@@ -80,7 +80,7 @@ typedef struct{
  */
 typedef struct{
   Player *player;
-  int red, orange, yellow, green, blue, indigo, violet;
+  int tank[7]; //counts of cards per color. 0 = red, 1 = orange, and so on
   int tankPoints[7]; // stores the points of each color 0 = red, 1 = orange, and so on
   int score;
 }GamePlayer;
