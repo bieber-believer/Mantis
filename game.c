@@ -229,11 +229,42 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
  * 
  * @return 1 if the players has a color in their tank, 0 otherwise
  */
-int hasColorInTank()
+int hasColorInTank(Card card, GamePlayer player)
 {
     int hasColor = 0;
+    int colorIndex = getColorIndex(card.front);
+
+    if(player.tankPoints[colorIndex] > 0)
+        hasColor = 1;
 
     return hasColor;
+}
+
+/**
+ * Gets the index of a color in tankPoints
+ * 
+ * @return The index number corresponding to the color
+ */
+int getColorIndex(char color)
+{
+    int index;
+
+    if(color == 'R') 
+        index = 0;
+    else if(color == 'O')
+        index = 1;
+    else if(color == 'Y')
+        index = 2;
+    else if(color == 'G')
+        index = 3;
+    else if(color == 'B')
+        index = 4;
+    else if(color == 'I')
+        index = 5;
+    else
+        index = 6;
+
+    return index;
 }
 
 /**
