@@ -225,11 +225,43 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
 }
 
 /**
+ * Check is the player has a color in their tank
  * 
+ * @return 1 if the players has a color in their tank, 0 otherwise
  */
-void tryToScore()
+int hasColorInTank()
 {
+    int hasColor = 0;
 
+    return hasColor;
+}
+
+/**
+ * Description
+ * 
+ * @param gameDeck The game deck to draw from
+ * @param gameDeckSize number of cards in the deck
+ */
+void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer player)
+{
+    Card drawnCard = drawCard(gameDeck, gameDeckSize);
+    int hasColor = hasColorInTank();
+
+    printf("Resolving turn for %s...\n", player.player->name);
+    printf("Drawn Card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
+
+    if(hasColor == 1)
+    {
+        printf("%s has (%d) %c card/s worth a total of (%d) pt/s\n", player.player->name);
+    }
+    else
+    {
+        printf("%s has no %c cards...\n", player.player->name, drawnCard.front);
+        printf("Adding drawn card to player's tank\n");
+    }
+
+    printf("Press any key...\n");
+    getchar();
 }
 
 /**
@@ -310,19 +342,40 @@ Card drawCard(Card gameDeck[], int *gameDeckSize)
 void addToTank(GamePlayer *gamePlayer, Card card)
 {
     if(card.front == 'R')
+    {
         gamePlayer->red++;
+        gamePlayer->tankPoints[0] += card.point;
+    }
     else if(card.front == 'O')
+    {
         gamePlayer->orange++;
+        gamePlayer->tankPoints[1] += card.point;
+    }
     else if(card.front == 'Y')
+    {
         gamePlayer->yellow++;
+        gamePlayer->tankPoints[2] += card.point;
+    }
     else if(card.front == 'G')
+    {
         gamePlayer->green++;
+        gamePlayer->tankPoints[3] += card.point;
+    }
     else if(card.front == 'B')
+    {
         gamePlayer->blue++;
+        gamePlayer->tankPoints[4] += card.point;
+    }
     else if(card.front == 'I')
+    {
         gamePlayer->indigo++;
+        gamePlayer->tankPoints[5] += card.point;
+    }
     else if(card.front == 'V')
+    {
         gamePlayer->violet++;
+        gamePlayer->tankPoints[6] += card.point;
+    }
 }
 
 /**
