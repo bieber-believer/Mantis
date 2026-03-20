@@ -29,13 +29,14 @@ void displayTitle()
 /**
  * Compiles the functions needed for a new game
  */
-void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers)
+void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings)
 {
     //call getNumPlaying()
     getNumPlaying(numGamePlayers);
     //call playerSelection()
     playerSelection(players, numPlayers, gamePlayers, *numGamePlayers);
     //call gameStart()
+    gameStart(players, *numPlayers, gamePlayers, *numGamePlayers, deck, gameDeck, gameDeckSize, currSettings);
 }
 
 /**
