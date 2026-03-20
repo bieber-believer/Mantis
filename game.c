@@ -12,6 +12,7 @@
 #include "defs.h"
 #include "helpers_1.c"
 #include "helpers_2.c"
+#include "interface.c"
 
 //===========================================
 //          Function Implementation
@@ -61,19 +62,24 @@ int usernameExists(Player players[], int numPlayers, User name)
  * 
  * @param players The array of registered players
  * @param numPlayers The number of reigstered players that will be updated
+ * @param success Updates the variable to 1 if the user is successfully registered
  */
-void registerPlayer(Player players[], int *numPlayers)
+void registerPlayer(Player players[], int *numPlayers, int *success)
 {
     int i;
     int loop = 1, exists = 0;
     FILE *fp;
     User newUsername;
 
+    *success = 0;
+
     while(loop == 1)
     {   
         if(*numPlayers >= MAX_PLAYERS)
         {
             printf("Can't register. Max number of players reached.\n");
+            printf("Press any key...\n");
+            getchar();
             loop = 0;
         }
         else
@@ -96,12 +102,17 @@ void registerPlayer(Player players[], int *numPlayers)
 
                 //add to txt file
                 fp = fopen(PLAYER_FILE, "a");
-                fprintf(fp, "%s %d %d", newUsername, 0, 0);
+                fprintf(fp, "%s %d %d\n", newUsername, 0, 0);
                 fclose(fp);
 
                 //update the number of players
                 *numPlayers += 1;
                 printf("%s registered! Welcome!\n", newUsername);
+
+                *success = 1;
+
+                printf("Press any key...\n");
+                getchar();
 
                 //exit loop
                 loop = 0;
@@ -117,10 +128,100 @@ void registerPlayer(Player players[], int *numPlayers)
  * @param numPlayers The number of registered players
  * @param gamePlayers The array where players who will be playing will be stored
  * @param numGamePlayers The number of players playing
+ * @param selection The array that will store the players and see if they have been selected
  */
-void playerSelection(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers)
+void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[], int numGamePlayers)
 {
-   
+   int registered; // 1 if player has been successfully registered
+   int numSelected = 0; // the number of players that has been selected
+   int choice;
+   int i;
+
+   //set picked variable in players to 0
+   for(i = 0; i < *numPlayers; i++)
+    players[i].picked = 0;
+
+   while(numSelected < numGamePlayers) 
+   {
+        system("cls");
+
+        //show which player is Player n and which slots are empty
+        for(i = 0; i < numGamePlayers; i++)
+        {
+            if(i < numSelected)
+                printf("P%d: %s\n", i+1, gamePlayers[i].player->name);
+            else 
+                printf("P%d: ?\n", i+1);
+        }
+
+        printf("\nSelect Player %d:\n", numSelected + 1);
+        printf("\t[0] Add new player\n");
+
+        //show the players they can select
+        for(i = 0; i < *numPlayers; i++)
+        {
+            if(players[i].picked == 1)
+            {
+                printf("\t[%d] %s ", i+1, players[i].name);
+                iSetColor(I_COLOR_GREEN);
+                printf("(Already selected)\n");
+                iSetColor(I_COLOR_WHITE);
+            }
+            else
+                printf("\t[%d] %s\n", i+1, players[i].name);
+        }
+
+        //ask user
+        printf("\n>> ");
+        scanf("%d", &choice);
+        while(getchar() != '\n');
+
+        if(choice == 0)
+        {
+            registerPlayer(players, numPlayers, &registered);
+
+            if(registered == 1)
+            {
+                players[*numPlayers - 1].picked = 1;
+                gamePlayers[numSelected].player = &players[*numPlayers - 1];
+                numSelected++;
+            }
+        }
+        else if(choice >= 1 && choice <= *numPlayers)
+        {
+            if(players[choice-1].picked == 1)
+            {
+                printf("\nThat player is already selected. Try again.\n");
+                printf("Press any key...\n");
+                getchar();
+            }
+            else
+            {
+                players[choice-1].picked = 1;
+                gamePlayers[numSelected].player = &players[choice-1];
+                numSelected++;
+            }
+        }
+        else
+        {
+            printf("Invalid input. Try again.\n");
+            printf("Press any key...\n");
+            getchar();
+        }
+   }
+
+   //initialize gamePlayer tank
+   for(i = 0; i < numGamePlayers; i++)
+   {
+    gamePlayers[i].red = 0;
+    gamePlayers[i].orange = 0;
+    gamePlayers[i].yellow = 0;
+    gamePlayers[i].green = 0;
+    gamePlayers[i].blue = 0;
+    gamePlayers[i].indigo = 0;
+    gamePlayers[i].violet = 0;
+    gamePlayers[i].score = 0;
+   }
 }
 
 /**
