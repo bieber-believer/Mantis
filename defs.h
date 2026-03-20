@@ -18,9 +18,9 @@
 #define PI 3.1415
 #define ARR_SIZE 10
 
-//====================
+//+==================+
 //|   my constants   |
-//====================
+//+==================+
 #define MAX_PLAYERS 50              // program can handle max 50
 #define MIN_GAME_PLAYERS 3          // minimum players needed to play a game
 #define MAX_GAME_PLAYERS 6          // maximum players for a game
@@ -47,9 +47,9 @@ typedef struct
   int year;  // The year
 } Date;
 
-//====================
+//+==================+
 //|    my typedefs   |
-//====================
+//+==================+
 
 /**
  * Typdef to create string for username
@@ -92,5 +92,41 @@ typedef struct{
   int winningPoints;
   int seed;
 }Settings;
+
+//+==========================+
+//|    function prototypes   |
+//+==========================+
+// game.c
+void getNumPlaying(int *numGamePlayers);
+int usernameExists(Player players[], int numPlayers, User name);
+void registerPlayer(Player players[], int *numPlayers, int *success);
+void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[], int numGamePlayers);
+int hasColor(Card card, GamePlayer player);
+int getColorIndex(char color);
+void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player);
+void tryToSteal(Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], int numGamePlayers, int currentPlayerIndex);
+void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card gameDeck[], int gameDeckSize);
+void shuffleAndDeal(Card deck[], Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed);
+Card drawCard(Card gameDeck[], int *gameDeckSize);
+void addToTank(GamePlayer *gamePlayer, Card card);
+int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, int winningPoints);
+void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnerIndex);
+void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings);
+
+// menu.c
+void displayTitle();
+void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings);
+void sortByWins(Player players[], Player topWins[], int numPlayers);
+void sortByScore(Player players[], Player topScore[], int numPlayers);
+void displayTop10ByWins(Player players[], Player topWins[], int numPlayers);
+void displayTop10ByScore(Player players[], Player topScore[], int numPlayers);
+void displayTop10(Player players[], Player topWins[], Player topScore[], int numPlayers);
+void changeSettings(Settings *currSettings);
+void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize);
+
+// mp_template.c
+void mantisToStruct(Card deck[]);
+void playersToStruct(Player players[], int *numPlayers);
+void savePlayers(Player players[], int numPlayers);
 
 #endif // DEFS_H Include this to prevent redefinition error
