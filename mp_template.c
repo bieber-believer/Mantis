@@ -25,19 +25,16 @@
  * Reads the mantis.txt file and stores it in a struct
  * 
  * @param deck The struct array where the cards will be stored
- * @param deckSize The pointer that will update the size of the deck
+ * @param n The total number of cards
  */
-void mantisToStruct(Card deck[], int *deckSize)
+void mantisToStruct(Card deck[], int n)
 {
   int i;
   FILE *fp;
   fp = fopen("mantis.txt", "r");
 
-  *deckSize = 0;
-
   for(i = 0; i < TOTAL_CARDS; i++){
     fscanf(fp," %c | %3s %d", &deck[i].front, deck[i].back, &deck[i].point);
-    *deckSize += 1;
   }
 
   fclose(fp);
@@ -131,6 +128,13 @@ int main()
 
   Card gameDeck[TOTAL_CARDS]; //the deck of cards that will be used in the game
   int gameDeckSize;           //cards remaining in the current game
+
+  //load data from files
+  mantisToStruct(deck, TOTAL_CARDS);
+  playersToStruct(players, &numPlayers);
+
+  //call main menu
+  mainMenu(players, topWins, topScore, &numPlayers, gamePlayers, &currSettings, &numGamePlayers, deck, gameDeck, &gameDeckSize);
 
   // // Original array of coordinates to demonstrate the use of the shuffle function
   // Coordinate ogPointsArray[ARR_SIZE];
