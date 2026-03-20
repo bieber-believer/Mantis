@@ -36,7 +36,7 @@ void mantisToStruct(Card deck[], int *deckSize)
   *deckSize = 0;
 
   for(i = 0; i < TOTAL_CARDS; i++){
-    fscanf(fp,"%c | %3s %d", &deck[i].front, deck[i].back, &deck[i].point);
+    fscanf(fp," %c | %3s %d", &deck[i].front, deck[i].back, &deck[i].point);
     *deckSize += 1;
   }
 
