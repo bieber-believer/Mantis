@@ -11,9 +11,6 @@
 #include <string.h>
 
 #include "defs.h"
-#include "helpers_1.c"
-#include "helpers_2.c"
-#include "interface.c"
 
 //===========================================
 //          Function Implementation

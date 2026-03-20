@@ -8,11 +8,10 @@
 
  /* ----- preprocessor directives ----- */
 #include <stdio.h>
+#include<string.h>
 
 #include "defs.h"
-#include "helpers_1.c"
-#include "helpers_2.c"
-#include "game.c"
+
 
 //===========================================
 //          Function Implementation
