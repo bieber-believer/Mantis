@@ -29,9 +29,12 @@ void displayTitle()
 /**
  * Compiles the functions needed for a new game
  */
-void newGame()
+void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers)
 {
+    //call getNumPlaying()
+    getNumPlaying(numGamePlayers);
     //call playerSelection()
+    playerSelection(players, numPlayers, gamePlayers, *numGamePlayers);
     //call gameStart()
 }
 
@@ -304,8 +307,9 @@ void changeSettings(Settings *currSettings)
  * @param topScore The array where the players are sorted by their highest scores
  * @param numPlayers The number of registered players
  * @param currSetting The current game settings
+ * @param numGamePlayers
  */
-void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlayers, Settings *currSettings)
+void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers)
 {
     int loop = 1; // variable to keep the loop going
     int choice;  // where users choice will be stored
@@ -326,10 +330,10 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlay
         switch(choice)
         {
             case 1:
-                newGame();
+                newGame(players, &numPlayers, gamePlayers, &numGamePlayers);
                 break;
             case 2:
-                displayTop10(players, topWins, topScore, numPlayers);
+                displayTop10(players, topWins, topScore, *numPlayers);
                 printf("Press any key...\n");
                 getchar();
                 break;
