@@ -56,7 +56,7 @@ void playersToStruct(Player players[], int *numPlayers)
 
   fp=fopen("players.txt", "r");
 
-  for(i = 0; i < MAX_PLAYERS; i++){
+  for(i = 0; i < MAX_PLAYERS && feof(fp) != 0; i++){
     fscanf(fp, "%s %d %d", players[i].name, &players[i].wins, &players[i].highestScore);
     *numPlayers += 1;
   }
