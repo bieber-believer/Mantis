@@ -259,10 +259,11 @@ void shuffleAndDeal()
 /**
  * Draws the top card from the deck and move the remaining cards forward
  * 
- * @param
- * @param
+ * @param The game deck to draw from
+ * @param The number of cards in the deck
  * 
  * @return The drawn card
+ * @pre gameDeckSize is greater than 0
  */
 Card drawCard(Card gameDeck[], int *gameDeckSize)
 {
@@ -275,6 +276,30 @@ Card drawCard(Card gameDeck[], int *gameDeckSize)
     *gameDeckSize -= 1;
 
     return drawn;
+}
+
+/**
+ * Adds a card to a color slot in a player's tank based on the front color
+ * 
+ * @param gamePlayer The player whose tank will be updated
+ * @param card The card added to the tank
+ */
+void addToTank(GamePlayer *gamePlayer, Card card)
+{
+    if(card.front == "R")
+        gamePlayer->red++;
+    else if(card.front == "O")
+        gamePlayer->orange++;
+    else if(card.front == "Y")
+        gamePlayer->yellow++;
+    else if(card.front == "G")
+        gamePlayer->green++;
+    else if(card.front == "B")
+        gamePlayer->blue++;
+    else if(card.front == "I")
+        gamePlayer->indigo;
+    else if(card.front == "V")
+        gamePlayer->violet;
 }
 
 /**
