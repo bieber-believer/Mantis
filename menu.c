@@ -310,7 +310,7 @@ void changeSettings(Settings *currSettings)
  * @param currSetting The current game settings
  * @param numGamePlayers
  */
-void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers)
+void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize)
 {
     int loop = 1; // variable to keep the loop going
     int choice;  // where users choice will be stored
@@ -331,7 +331,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
         switch(choice)
         {
             case 1:
-                newGame(players, numPlayers, gamePlayers, numGamePlayers);
+                newGame(players, numPlayers, gamePlayers, numGamePlayers, deck, gameDeck, gameDeckSize, *currSettings);
                 break;
             case 2:
                 displayTop10(players, topWins, topScore, *numPlayers);
