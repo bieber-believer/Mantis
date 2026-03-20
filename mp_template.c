@@ -13,13 +13,15 @@
 #include "defs.h"
 #include "helpers_1.c"
 #include "helpers_2.c"
+#include "interface.c"
+#include "game.c"
+#include "menu.c"
 
 /* ----- definitions (i.e., constants, typedefs, structs) ----- */
 //i inserted my own definitions in defs.h
 
 /* ----- function implementations ----- */
-#include "menu.c"
-#include "game.c"
+//my function protoypes are in defs.h
 
 /**
  * Reads the mantis.txt file and stores it in a struct
