@@ -248,17 +248,33 @@ void displayGameState()
 
 }
 
+/**
+ * Shuffle the deck and deal 4 cards to each player
+ */
 void shuffleAndDeal()
 {
 
 }
 
 /**
+ * Draws the top card from the deck and move the remaining cards forward
  * 
+ * @param
+ * @param
+ * 
+ * @return The drawn card
  */
-Card drawCard()
+Card drawCard(Card gameDeck[], int *gameDeckSize)
 {
+    int i;
+    Card drawn = gameDeck[0];
 
+    for(i = 0; i < *gameDeckSize - 1; i++)
+        gameDeck[i] = gameDeck[i + 1];
+
+    *gameDeckSize -= 1;
+
+    return drawn;
 }
 
 /**
