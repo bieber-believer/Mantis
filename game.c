@@ -229,7 +229,7 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
  * 
  * @return 1 if the players has a color in their tank, 0 otherwise
  */
-int hasColorInTank(Card card, GamePlayer player)
+int hasColor(Card card, GamePlayer player)
 {
     int hasColor = 0;
     int colorIndex = getColorIndex(card.front);
@@ -276,7 +276,7 @@ int getColorIndex(char color)
 void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer player)
 {
     Card drawnCard = drawCard(gameDeck, gameDeckSize);
-    int hasColor = hasColorInTank();
+    int exist = hasColor(drawnCard, player);
 
     printf("Resolving turn for %s...\n", player.player->name);
     printf("Drawn Card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
