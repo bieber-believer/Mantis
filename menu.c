@@ -334,8 +334,6 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
                 break;
             case 2:
                 displayTop10(players, topWins, topScore, *numPlayers);
-                printf("Press any key...\n");
-                getchar();
                 break;
             case 3:
                 changeSettings(currSettings);
