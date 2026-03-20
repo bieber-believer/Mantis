@@ -220,9 +220,12 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
 }
 
 /**
- * Check is the player has a color in their tank
+ * Check if a player has at least one card of the given card's front color
+ * in their tank
  * 
- * @return 1 if the players has a color in their tank, 0 otherwise
+ * @param card The card whose front color is being checked
+ * @param player The player whose tank is being checked
+ * @return 1 if the players has at least one card of that color, 0 otherwise
  */
 int hasColor(Card card, GamePlayer player)
 {
@@ -230,9 +233,11 @@ int hasColor(Card card, GamePlayer player)
 }
 
 /**
- * Gets the index of a color in tankPoints
+ * Returns the index corresponding to a color character
+ * Used for accessing tank[] and tankPoints[] arrays
  * 
- * @return The index number corresponding to the color
+ * @param color The color character (R,O,Y,G,B,I,V)
+ * @return The index number of the color (0=R, 1=O, 2=Y, 3=G, 4=B, 5=I, 6=V)
  */
 int getColorIndex(char color)
 {
@@ -257,10 +262,13 @@ int getColorIndex(char color)
 }
 
 /**
- * Description
+ * Draws the top card from the deck. If the player already has that color in
+ * their tank, all cards of that color is moved to their sccore pile.
+ * Otherwise the card is added to their tank.
  * 
  * @param gameDeck The game deck to draw from
- * @param gameDeckSize number of cards in the deck
+ * @param gameDeckSize Number of cards reamining in the deck
+ * @param player Current player whose turn is being resolved
  */
 void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player)
 {
