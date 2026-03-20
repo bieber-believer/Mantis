@@ -330,7 +330,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
         switch(choice)
         {
             case 1:
-                newGame(players, &numPlayers, gamePlayers, &numGamePlayers);
+                newGame(players, numPlayers, gamePlayers, numGamePlayers);
                 break;
             case 2:
                 displayTop10(players, topWins, topScore, *numPlayers);
