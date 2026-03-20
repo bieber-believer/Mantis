@@ -76,26 +76,21 @@ typedef struct{
 }Card;
 
 /**
- * The Players state during a game
+ * Represents the players state during a game
  */
 typedef struct{
   Player *player;
-  int red;
-  int orange;
-  int yellow;
-  int green;
-  int blue; 
-  int indigo;
-  int violet;
+  int red, orange, yellow, green, blue, indigo, violet;
+  int tankPoints[7]; // stores the points of each color 0 = red, 1 = orange, and so on
   int score;
 }GamePlayer;
 
 /**
- * The settings of the game
+ * Represents the settings of the game
  */
 typedef struct{
   int winningPoints;
   int seed;
 }Settings;
 
-#endif // DEFS_H; Include this to prevent redefinition error
+#endif // DEFS_H Include this to prevent redefinition error
