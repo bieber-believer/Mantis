@@ -250,10 +250,33 @@ void displayGameState()
 
 /**
  * Shuffle the deck and deal 4 cards to each player
+ * 
+ * @param deck The original deck of cards
+ * @param gameDeck The copy of deck that will be shuffled and used int the game
+ * @param gameDeckSize The number of cards in the deck
+ * @param gamePlayers The players currently playing
+ * @param numGamePlayers The number of players playing
+ * @param seed The seed value used for shuffling
+ * 
+ * @pre playerSelection has been called and gamePlayers tanks are initialized to 0
  */
-void shuffleAndDeal()
+void shuffleAndDeal(Card deck[], Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed)
 {
+    int i, j;
 
+    //put deck in gamedeck
+    for(i = 0; i < TOTAL_CARDS; i++)
+        gameDeck[i] = deck[i];
+
+    *gameDeckSize = TOTAL_CARDS;
+
+    //shuffle the gamedeck
+    shuffle(gameDeck, *gameDeckSize, sizeof(Card), seed);
+
+    //deal 4 cards (draw a card and add it to the tank)
+    for(i = 0; i < numGamePlayers; i++)
+        for(j = 0; j < 4; j++)
+            addToTank(&gamePlayers[i], drawCard(gameDeck, gameDeckSize));
 }
 
 /**
