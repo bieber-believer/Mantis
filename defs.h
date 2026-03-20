@@ -63,6 +63,7 @@ typedef struct{
   User name;
   int wins;
   int highestScore;
+  int picked; //flag to see if the player has been picked in player selection
 }Player;
 
 /**
@@ -70,7 +71,7 @@ typedef struct{
  */
 typedef struct{
   char front;   // The actual color of the card
-  char back[4]; // The colors it could possible be
+  char back[4]; // The colors it could possibly be
   int point;    // The points of the card
 }Card;
 
