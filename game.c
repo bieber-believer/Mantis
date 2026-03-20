@@ -282,8 +282,8 @@ void shuffleAndDeal(Card deck[], Card gameDeck[], int *gameDeckSize, GamePlayer 
 /**
  * Draws the top card from the deck and move the remaining cards forward
  * 
- * @param The game deck to draw from
- * @param The number of cards in the deck
+ * @param gameDeck The game deck to draw from
+ * @param gameDeckSize number of cards in the deck
  * 
  * @return The drawn card
  * @pre gameDeckSize is greater than 0
@@ -309,20 +309,20 @@ Card drawCard(Card gameDeck[], int *gameDeckSize)
  */
 void addToTank(GamePlayer *gamePlayer, Card card)
 {
-    if(card.front == "R")
+    if(card.front == 'R')
         gamePlayer->red++;
-    else if(card.front == "O")
+    else if(card.front == 'O')
         gamePlayer->orange++;
-    else if(card.front == "Y")
+    else if(card.front == 'Y')
         gamePlayer->yellow++;
-    else if(card.front == "G")
+    else if(card.front == 'G')
         gamePlayer->green++;
-    else if(card.front == "B")
+    else if(card.front == 'B')
         gamePlayer->blue++;
-    else if(card.front == "I")
-        gamePlayer->indigo;
-    else if(card.front == "V")
-        gamePlayer->violet;
+    else if(card.front == 'I')
+        gamePlayer->indigo++;
+    else if(card.front == 'V')
+        gamePlayer->violet++;
 }
 
 /**
