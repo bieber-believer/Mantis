@@ -503,7 +503,7 @@ int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, 
             for(i = 0; i < numGamePlayers; i++)
             {
                 totalTank = 0;
-                
+
                 for(j = 0; j < 7; j++)
                 {
                     totalTank += gamePlayers[i].tank[j];
@@ -525,7 +525,60 @@ void gameStart()
 
 }
 
-void showResults()
+/**
+ * Display the results of the game and updates the wins and highest score of a player
+ * 
+ * @param gamePlayers The players playing the game
+ * @param numGamePlayers Number of players playing
+ * @param winnerIndex The index of the winner in gamePlayers
+ */
+void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
 {
+    int i, j;
+    int totalTank; //total number of cards in the tank of the players, this variable helps check if there is a tie
+    int winnerTank = 0; //total number of the cards in the tank of the winner, will also help check for a tie
 
+    //get the total number of cards in tank of the winner
+    for(i = 0; i < 7; i++)
+        winnerTank += gamePlayers[winnderIndex].tank[i];
+
+    printf("WE HAVE A WINNER!\n\n");
+
+    //display the players final stats
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        totalTank = 0;
+
+        for(j = 0; j < 7; j++)
+            totalTank += gamePlayers[i].tank[j];
+
+        printf("P%d: %s %d %d\n", i+1, gamePlayers[i].player->name, gamePlayers[i].score, totalTank);
+
+        //update highest score if the current score is higher
+        if(gamePlayers[i].score > gamePlayers[i].player->highestScore)
+            gamePlayers[i].player->highestScore = gamePlayers[i].score;
+    }
+
+    printf("\nPress any key...\n");
+    getchar();
+
+    //announce the winner/s and update their wins
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        totalTank = 0;
+
+        //fill the tank to see if there is any other player with the same number of cards in their tank
+        for(j = 0; j < 7; j++)
+            totalTank += gamePlayers[i].tank[j];
+
+        //check if winner and a player have the same score and tankcards in case of tie
+        if(gamePlayers[i].score == gamePlayers[winnderIndex].score && totalTank == winnerTank)
+        {
+            printf("%s wins!\n", gamePlayers[i].player->name);
+            gamePlayers[i].player->wins++;
+        }
+    }
+
+    printf("\nPress any key...\n");
+    getchar();
 }
