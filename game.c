@@ -231,13 +231,7 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
  */
 int hasColor(Card card, GamePlayer player)
 {
-    int hasColor = 0;
-    int colorIndex = getColorIndex(card.front);
-
-    if(player.tankPoints[colorIndex] > 0)
-        hasColor = 1;
-
-    return hasColor;
+    return player.tank[getColorIndex(card.front)] > 0;
 }
 
 /**
