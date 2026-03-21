@@ -610,8 +610,8 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
 
         //ask player want they wanna do
         printf("%s, what would you like to do?\n", gamePlayers[currentPlayerIndex].player->name);
-        printf("[1] Try to Score\n");
-        printf("[2] Try to Steal\n\n");
+        printf("  [1] Try to Score\n");
+        printf("  [2] Try to Steal\n\n");
         printf(">> ");
         scanf("%d", &choice);
         while(getchar() != '\n');
