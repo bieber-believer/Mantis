@@ -58,7 +58,7 @@ void displayHowToPlay()
     printf("Then, flip over the top card from the Draw Pile. If the new card's color corresponds to one or\n");
     printf("more cards in the chosen player's Tank, place the new card and any matching cards in your own\n");
     printf("Tank. If the card does not match any of the cards in front of the chosen player, you will place the\n");
-    printf("new card in the chosen player's Tank.\n");
+    printf("new card in the chosen player's Tank.\n\n");
 
     printf("The first player to get a score higer or equal to the winning points win.\n\n");
 
@@ -373,8 +373,10 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
         displayTitle();
         printf("\nMain Menu\n");
         printf("[1] New Game\n");
-        printf("[2] View Statistics\n");
-        printf("[3] Settings\n");
+        printf("[2] How To Play\n");
+        printf("[3] View Statistics\n");
+        printf("[4] Settings\n");
+        printf("[5] Acknowledgements\n");
         printf("[0] Exit\n\n");
 
         printf(">> ");
@@ -391,11 +393,23 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
                 newGame(players, numPlayers, gamePlayers, numGamePlayers, deck, gameDeck, gameDeckSize, *currSettings);
                 break;
             case 2:
-                displayTop10(players, topWins, topScore, *numPlayers);
+                system("cls");
+                displayHowToPlay();
+                printf("\nPress any key...\n");
+                getchar();
                 break;
             case 3:
+                displayTop10(players, topWins, topScore, *numPlayers);
+                break;
+            case 4:
                 changeSettings(currSettings);
                 break;
+            case 5:
+                system("cls");
+                displayAcknowledgements();  
+                printf("\nPress any key...\n");
+                getchar();
+                break;  
             case 0:
                 printf("\nMay the force be with you. Bye!");
                 loop = 0; // set loop to 0 to break out the loop
