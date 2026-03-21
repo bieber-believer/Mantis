@@ -675,7 +675,7 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
  */
 void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
 {
-    int i, j;
+    int i;
     int firstWinner = 1; // 1 if only 1 winner
 
     displayTrophy();
