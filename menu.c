@@ -74,6 +74,10 @@ void displayAcknowledgements()
     printf("Artwork by: (unknown artist)\n");
     printf("View art in: https://boxes.thomasjensen.com/box-designs.html \n\n");
 
+    displayTrophy();
+    printf("Artwork by: Joan Stark (Spunk)\n");
+    printf("View art in: https://asciiart.website/art/5899 \n\n");
+
     displayTitle();
     printf("Font from: https://patorjk.com/software/taag/#p=display&f=Star+Wars&t=MANTIS&x=none&v=4&h=4&w=80&we=false \n");
 }
