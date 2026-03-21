@@ -303,8 +303,9 @@ void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player)
     Card drawnCard = drawCard(gameDeck, gameDeckSize);
     int colorIndex = getColorIndex(drawnCard.front);
 
-    printf("Resolving turn for %s...\n", player->player->name);
-    printf("Drawn Card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
+    printf("\nResolving turn for %s...\n\n", player->player->name);
+    displayDrawnCard(drawnCard);
+    printf("\nDrawn Card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
 
     if(hasColor(drawnCard, *player) == 1)
     {
@@ -380,8 +381,9 @@ void tryToSteal(Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], in
     drawnCard = drawCard(gameDeck, gameDeckSize);
     colorIndex = getColorIndex(drawnCard.front);
 
-    printf("Resolving turn for %s...\n", gamePlayers[currentPlayerIndex].player->name);
-    printf("Drawn card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
+    printf("Resolving turn for %s...\n\n", gamePlayers[currentPlayerIndex].player->name);
+    displayDrawnCard(drawnCard);
+    printf("\nDrawn card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
 
     if(hasColor(drawnCard, gamePlayers[targetIndex]) == 1)
     {
