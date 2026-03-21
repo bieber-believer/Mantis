@@ -30,6 +30,7 @@ void displayTitle()
  */
 void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings)
 {
+    system("cls");
     //call getNumPlaying()
     getNumPlaying(numGamePlayers);
     //call playerSelection()
@@ -330,6 +331,10 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
         switch(choice)
         {
             case 1:
+                system("cls");
+                printf("Enjoy the game!\n\n");
+                printf("Press any key...\n");
+                getchar();
                 newGame(players, numPlayers, gamePlayers, numGamePlayers, deck, gameDeck, gameDeckSize, *currSettings);
                 break;
             case 2:
@@ -339,7 +344,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
                 changeSettings(currSettings);
                 break;
             case 0:
-                printf("May the force be with you. Bye!");
+                printf("\nMay the force be with you. Bye!");
                 loop = 0; // set loop to 0 to break out the loop
                 break;
             default:
