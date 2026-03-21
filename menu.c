@@ -66,11 +66,16 @@ void displayHowToPlay()
 }
 
 /**
- * 
+ * Displays the acknowledgements
  */
 void displayAcknowledgements()
 {
+    displayHeader();
+    printf("Artwork by: (unknown artist)\n");
+    printf("View art in: https://boxes.thomasjensen.com/box-designs.html \n\n");
 
+    displayTitle();
+    printf("https://patorjk.com/software/taag/#p=display&f=Star+Wars&t=MANTIS&x=none&v=4&h=4&w=80&we=false \n");
 }
 
 /**
