@@ -263,7 +263,7 @@ void changeSettings(Settings *currSettings)
         printf("Winning Points: %d points ", currSettings->winningPoints);
         printf("(Default: 20 points)\n");
         printf("Shuffle Seed: %d ", currSettings->seed);
-        printf("(Default: Random)\n"); 
+        printf("(Default: Random)\n\n"); 
 
         printf("Change Settings?\n");
         printf("[1] Winning Points\n");
