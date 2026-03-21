@@ -55,7 +55,7 @@ void playersToStruct(Player players[], int *numPlayers)
   fp=fopen("players.txt", "r");
 
   for(i = 0; i < MAX_PLAYERS && feof(fp) == 0; i++){
-    fscanf(fp, "%s %d %d", players[i].name, &players[i].wins, &players[i].highestScore);
+    if(fscanf(fp, "%s %d %d", players[i].name, &players[i].wins, &players[i].highestScore) == PLAYER_INFO)
     *numPlayers += 1;
   }
 
@@ -111,7 +111,7 @@ float getAverage(int arr[], int arrSize)
 int main()
 {
   /* your project code */
-  Player players[MAX_PLAYERS];  // array of players
+  Player players[MAX_PLAYERS] = {0};  // array of players
   int numPlayers = 0;           // number of registered players
 
   Player topWins[MAX_PLAYERS]; //array that has the list of players from highest wins to lowest
