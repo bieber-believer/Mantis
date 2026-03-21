@@ -317,7 +317,9 @@ void changeSettings(Settings *currSettings)
         printf("Shuffle Seed: %d ", currSettings->seed);
         printf("(Default: Random)\n\n"); 
 
+        iSetColor(I_COLOR_CYAN);
         printf("Change Settings?\n");
+        iSetColor(I_COLOR_WHITE);
         printf("[1] Winning Points\n");
         printf("[2] Shuffle Seed\n");
         printf("[3] Reset to Default\n");
@@ -415,6 +417,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
                 getchar();
                 break;  
             case 0:
+                iSetColor(I_COLOR_CYAN);
                 printf("\nMay the force be with you. Bye!");
                 loop = 0; // set loop to 0 to break out the loop
                 break;
