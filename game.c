@@ -54,8 +54,8 @@ void displayTrophy()
     printf("       _________\n");
     printf("      '.       .'\n");
     printf("       _\\:.   /_\n");
-    printf("      //|::   |\\\n");
-    printf("      \\|::   |//\n");
+    printf("      //|::   |\\\\\n");
+    printf("      \\\\|::   |//\n");
     printf("       `\\::.  /`\n");
     printf("         `\\ /`\n");
     printf("           T\n");
