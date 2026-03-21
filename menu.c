@@ -75,7 +75,7 @@ void displayAcknowledgements()
     printf("View art in: https://boxes.thomasjensen.com/box-designs.html \n\n");
 
     displayTitle();
-    printf("https://patorjk.com/software/taag/#p=display&f=Star+Wars&t=MANTIS&x=none&v=4&h=4&w=80&we=false \n");
+    printf("Font from: https://patorjk.com/software/taag/#p=display&f=Star+Wars&t=MANTIS&x=none&v=4&h=4&w=80&we=false \n");
 }
 
 /**
