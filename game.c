@@ -17,6 +17,20 @@
 //===========================================
 
 /**
+ * Displays a header to be shows each turn
+ */
+void displayHeader()
+{
+    printf("         _\\|/_\n");
+    printf("         (o o)\n");
+    printf(" +----oOO-{_}-OOo---------------------+\n");
+    printf(" |                                    |\n");
+    printf(" |          M  A  N  T  I  S          |\n");
+    printf(" |           Game Ongoing             |\n");
+    printf(" |                                    |\n");
+    printf(" +------------------------------------+\n\n");
+}
+/**
  * Ask the user how many players will be playing
  * 
  * @param numGamePlayers Pointer where the users input will be stored
@@ -390,6 +404,8 @@ void tryToSteal(Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], in
 void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card gameDeck[], int gameDeckSize)
 {
     int i;
+
+    displayHeader();
 
     for(i = 0; i < numGamePlayers; i++)
         printf("P%d -> R: %d O:%d Y:%d G:%d B:%d I:%d V:%d \tScore: %d\b", i+1, gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6], gamePlayers[i].score);
