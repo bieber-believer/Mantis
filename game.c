@@ -46,6 +46,28 @@ void displayDrawnCard(Card card)
 }
 
 /**
+ * Display a trophy
+ */
+void displayTrophy()
+{
+    iSetColor(I_COLOR_YELLOW);
+    printf("       _________\n");
+    printf("      '.       .'\n");
+    printf("       _\\:.   /_\n");
+    printf("      //|::   |\\\n");
+    printf("      \\|::   |//\n");
+    printf("       `\\::.  /`\n");
+    printf("         `\\ /`\n");
+    printf("           T\n");
+    printf("        __/ \\__\n");
+    printf("       |       |\n");
+    printf("jgs   _| GG EZ!|_\n");
+    printf("     |  ~~~~~~~  |\n");
+    printf("  ^^^^^^^^^^^^^^^^^^^\n\n");
+    iSetColor(I_COLOR_WHITE);
+}
+
+/**
  * Ask the user how many players will be playing
  * 
  * @param numGamePlayers Pointer where the users input will be stored
