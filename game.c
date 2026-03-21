@@ -684,7 +684,7 @@ void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
     {
         iSetColor(I_COLOR_WHITE);
         printf(" ================================================\n");
-        if(gamePlayers[i].score = gamePlayers[winnderIndex].score)
+        if(gamePlayers[i].score == gamePlayers[winnderIndex].score)
             iSetColor(I_COLOR_GREEN);
         printf("   %-36s Score: %d", gamePlayers[i].player->name, gamePlayers[i].score);
 
