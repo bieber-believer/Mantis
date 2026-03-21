@@ -46,6 +46,14 @@ void displayHowToPlay()
 }
 
 /**
+ * 
+ */
+void displayAcknowledgements()
+{
+
+}
+
+/**
  * Compiles the functions needed for a new game
  */
 void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings)
