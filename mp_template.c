@@ -5,6 +5,9 @@
  *  Section         : S22A
  *  Last Modified   : March 16, 2026
  *  Acknowledgments : https://www.geeksforgeeks.org/c/format-specifiers-in-c/
+ *                    https://www.geekyhobbies.com/mantis-rules/ 
+ *                    https://boxes.thomasjensen.com/box-designs.html
+ *                    https://patorjk.com/software/taag/#p=display&f=Star+Wars&t=MANTIS&x=none&v=4&h=4&w=80&we=false
  ******************************************************************************/
 
 /* ----- preprocessor directives ----- */
