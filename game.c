@@ -405,11 +405,14 @@ void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card gameDec
 {
     int i;
 
-    displayHeader();
-
     for(i = 0; i < numGamePlayers; i++)
-        printf("P%d -> R: %d O:%d Y:%d G:%d B:%d I:%d V:%d \tScore: %d\b", i+1, gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6], gamePlayers[i].score);
+    {
+        printf(" ================================================\n");
+        printf("   %-36s Score: %d\n", gamePlayers[i].player->name, gamePlayers[i].score);
+        printf("   R:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
+    }
 
+    printf(" ================================================\n");
     printf("\nTop Deck %s (%d cards remaining)\n\n", gameDeck[0].back, gameDeckSize);
 }
 
@@ -564,7 +567,20 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
     int currentPlayerIndex = 0;
 
     //shuffle and deal cards
+    system("cls");
+    printf("         _\\|/_\n");
+    printf("         (o o)\n");
+    printf(" +----oOO-{_}-OOo---------------------+\n");
+    printf(" |                                    |\n");
+    printf(" |          M  A  N  T  I  S          |\n");
+    printf(" |           Game Starting            |\n");
+    printf(" |                                    |\n");
+    printf(" +------------------------------------+\n\n");
     shuffleAndDeal(deck, gameDeck, gameDeckSize,gamePlayers, numGamePlayers, currSettings.seed);
+    printf("Deck shuffled! Dealing Tank cards...\n\n");
+    displayGameState(gamePlayers, numGamePlayers, gameDeck, *gameDeckSize);
+    printf("Press any key...\n");
+    getchar();
 
     //loop
     while(winnderIndex == -1)
@@ -572,12 +588,13 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
         system("cls");
 
         //display game state
+        displayHeader();
         displayGameState(gamePlayers, numGamePlayers, gameDeck, *gameDeckSize);
 
         //ask player want they wanna do
-        printf("Player %s, what would you like to do?\n", gamePlayers[currentPlayerIndex].player->name);
-        printf("\t[1] Try to Score\n");
-        printf("\t[2] Try to Steal\n\n");
+        printf("%s, what would you like to do?\n", gamePlayers[currentPlayerIndex].player->name);
+        printf("[1] Try to Score\n");
+        printf("[2] Try to Steal\n\n");
         printf(">> ");
         scanf("%d", &choice);
         while(getchar() != '\n');
