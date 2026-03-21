@@ -676,50 +676,65 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
 void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
 {
     int i, j;
-    int totalTank; //total number of cards in the tank of the players, this variable helps check if there is a tie
-    int winnerTank = 0; //total number of the cards in the tank of the winner, will also help check for a tie
+    int firstWinner = 1; // 1 if only 1 winner
 
-    //get the total number of cards in tank of the winner
-    for(i = 0; i < 7; i++)
-        winnerTank += gamePlayers[winnderIndex].tank[i];
+    displayTrophy();
 
-    printf("WE HAVE A WINNER!\n\n");
-
-    //display the players final stats
     for(i = 0; i < numGamePlayers; i++)
     {
-        totalTank = 0;
+        iSetColor(I_COLOR_WHITE);
+        printf(" ================================================\n");
+        if(gamePlayers[i].score = gamePlayers[winnderIndex].score)
+            iSetColor(I_COLOR_GREEN);
+        printf("   %-36s Score: %d", gamePlayers[i].player->name, gamePlayers[i].score);
 
-        for(j = 0; j < 7; j++)
-            totalTank += gamePlayers[i].tank[j];
-
-        printf("P%d: %s %d %d\n", i+1, gamePlayers[i].player->name, gamePlayers[i].score, totalTank);
-
-        //update highest score if the current score is higher
         if(gamePlayers[i].score > gamePlayers[i].player->highestScore)
-            gamePlayers[i].player->highestScore = gamePlayers[i].score;
+        {
+            iSetColor(I_COLOR_CYAN);
+            printf("  *** NEW BEST! ***");
+        }
+
+        iSetColor(I_COLOR_WHITE);
+        printf("\n\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
     }
 
-    printf("\nPress any key...\n");
-    getchar();
+    printf(" ================================================\n\n");
 
-    //announce the winner/s and update their wins
+    printf("  >> ");
     for(i = 0; i < numGamePlayers; i++)
     {
-        totalTank = 0;
-
-        //fill the tank to see if there is any other player with the same number of cards in their tank
-        for(j = 0; j < 7; j++)
-            totalTank += gamePlayers[i].tank[j];
-
-        //check if winner and a player have the same score and tankcards in case of tie
-        if(gamePlayers[i].score == gamePlayers[winnderIndex].score && totalTank == winnerTank)
+        if(gamePlayers[i].score == gamePlayers[winnderIndex].score)
         {
-            printf("%s wins!\n", gamePlayers[i].player->name);
+            if(!firstWinner) printf(" & ");
+            iSetColor(I_COLOR_GREEN);
+            printf("%s", gamePlayers[i].player->name);
+            iSetColor(I_COLOR_WHITE);
+            firstWinner = 0;
+        }
+    }
+    printf(" WIN! <<\n\n  [Record Updated]\n");
+
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        if(gamePlayers[i].score == gamePlayers[winnderIndex].score)
+        {
             gamePlayers[i].player->wins++;
+            printf("  %s: +1 win (Total wins: %d)\n",
+                gamePlayers[i].player->name, gamePlayers[i].player->wins);
+        }
+
+        if(gamePlayers[i].score > gamePlayers[i].player->highestScore)
+        {
+            iSetColor(I_COLOR_CYAN);
+            printf("  %s: *** NEW BEST! Old: %d | New: %d ***\n",
+                gamePlayers[i].player->name,
+                gamePlayers[i].player->highestScore,
+                gamePlayers[i].score);
+            iSetColor(I_COLOR_WHITE);
+            gamePlayers[i].player->highestScore = gamePlayers[i].score;
         }
     }
 
-    printf("\nPress any key...\n");
+    printf("\n  Press any key...\n");
     getchar();
 }
