@@ -409,11 +409,11 @@ void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card gameDec
     {
         printf(" ================================================\n");
         printf("   %-36s Score: %d\n", gamePlayers[i].player->name, gamePlayers[i].score);
-        printf("   R:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
+        printf("\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
     }
 
     printf(" ================================================\n");
-    printf("\nTop Deck %s (%d cards remaining)\n\n", gameDeck[0].back, gameDeckSize);
+    printf("\n Top Deck: %s | Cards Remaining: %d\n\n", gameDeck[0].back, gameDeckSize);
 }
 
 /**
