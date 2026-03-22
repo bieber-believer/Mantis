@@ -332,7 +332,8 @@ void tryToScore(Card deck[], int *deckSize, GamePlayer *player)
 
     if(hasColor(drawnCard, *player) == 1)
     {
-        printf("- %s has (%d) %c card/s worth a total of (%d) pt/s!\n", player->player->name, player->tank[colorIndex], drawnCard.front, player->tankPoints[colorIndex]);
+        printf("- %s has (%d) %c card/s worth a total of (%d) pt/s!\n", player->player->name, 
+                player->tank[colorIndex], drawnCard.front, player->tankPoints[colorIndex]);
         //update the score
         player->score += player->tankPoints[colorIndex] + drawnCard.point;
         printf("- +%d point/s to player's score pile!\n", player->tankPoints[colorIndex] + drawnCard.point);
@@ -408,7 +409,8 @@ void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGam
 
     if(hasColor(drawnCard, gamePlayers[targetIndex]) == 1)
     {
-        printf("- %s has (%d) %c card/s!\n", gamePlayers[targetIndex].player->name, gamePlayers[targetIndex].tank[colorIndex], drawnCard.front);
+        printf("- %s has (%d) %c card/s!\n", gamePlayers[targetIndex].player->name, gamePlayers[targetIndex].tank[colorIndex], 
+                drawnCard.front);
 
         //add to the players tank
         gamePlayers[currentPlayerIndex].tank[colorIndex] += gamePlayers[targetIndex].tank[colorIndex] + 1;
@@ -418,7 +420,8 @@ void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGam
         gamePlayers[targetIndex].tank[colorIndex] = 0;
         gamePlayers[targetIndex].tankPoints[colorIndex] = 0;
 
-        printf("- +%d (%c) cards to %s's tank!\n", gamePlayers[currentPlayerIndex].tank[colorIndex], drawnCard.front, gamePlayers[currentPlayerIndex].player->name);
+        printf("- +%d (%c) cards to %s's tank!\n", gamePlayers[currentPlayerIndex].tank[colorIndex], drawnCard.front, 
+                gamePlayers[currentPlayerIndex].player->name);
     }
     else
     {
@@ -446,7 +449,9 @@ void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card deck[],
     {
         printf(" ================================================\n");
         printf("   %-36s Score: %d\n", gamePlayers[i].player->name, gamePlayers[i].score);
-        printf("\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
+        printf("\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], 
+                gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], 
+                gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
     }
 
     printf(" ================================================\n");
