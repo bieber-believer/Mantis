@@ -553,7 +553,9 @@ void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
         }
 
         iSetColor(I_COLOR_WHITE);
-        printf("\n\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
+        printf("\n\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], 
+                gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], 
+                gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
     }
 
     printf(" ================================================\n\n");
