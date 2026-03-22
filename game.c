@@ -352,11 +352,82 @@ void tryToScore(Card deck[], int *deckSize, GamePlayer *player)
 }
 
 /**
+ * The current player selects a target player, then draw the top card from the deck. If the target has 
+ * that color in their tank, all cards of that color and the drawn card are put in the current player's 
+ * tank. Otherwise, the drawn card is added to the target player's tank
  * 
+ * @param deck The game deck to draw from
+ * @param deckSize Number of cards remaining in the deck
+ * @param gamePlayers The array of all the players playing the game
+ * @param numGamePlayers The number of players playing the game
+ * @param currentPlayerIndex The index of the current player in gamePlayers
  */
-void tryToSteal()
+void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int currentPlayerIndex)
 {
+    Card drawnCard;
+    int colorIndex;
+    int i, choice, valid;
+    int targetIndex; // the index of the player to be stolen from
 
+    //ask who to steal from
+    do
+    {
+        valid = 1;
+
+        printf("Who would you like to steal from?\n");
+        for(i = 0; i < numGamePlayers; i++)
+            if(i != currentPlayerIndex)
+                printf("\t[%d] %s\n", i + 1, gamePlayers[i].player->name);
+        
+        printf("\n>> ");
+        scanf("%d", &choice);
+        while(getchar() != '\n');
+
+        if(choice < 1 || choice > numGamePlayers)
+        {
+            printf("Invalid input. Try again.\n");
+            valid = 0;
+        }
+        else if(choice - 1 == currentPlayerIndex)
+        {
+            printf("You cannot steal from yourself. Try again.\n");
+            valid = 0;
+        }
+
+    } while (valid == 0);
+
+    targetIndex = choice - 1;
+    
+    //draw card and get the color index
+    drawnCard = drawCard(deck, deckSize);
+    colorIndex = getColorIndex(drawnCard.front);
+
+    printf("Resolving turn for %s...\n\n", gamePlayers[currentPlayerIndex].player->name);
+    displayDrawnCard(drawnCard);
+    printf("\nDrawn card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
+
+    if(hasColor(drawnCard, gamePlayers[targetIndex]) == 1)
+    {
+        printf("- %s has (%d) %c card/s!\n", gamePlayers[targetIndex].player->name, gamePlayers[targetIndex].tank[colorIndex], drawnCard.front);
+
+        //add to the players tank
+        gamePlayers[currentPlayerIndex].tank[colorIndex] += gamePlayers[targetIndex].tank[colorIndex] + 1;
+        gamePlayers[currentPlayerIndex].tankPoints[colorIndex] += gamePlayers[targetIndex].tankPoints[colorIndex] + drawnCard.point;
+
+        //remove from target's tank
+        gamePlayers[targetIndex].tank[colorIndex] = 0;
+        gamePlayers[targetIndex].tankPoints[colorIndex] = 0;
+
+        printf("- +%d (%c) cards to %s's tank!\n", gamePlayers[currentPlayerIndex].tank[colorIndex], drawnCard.front, gamePlayers[currentPlayerIndex].player->name);
+    }
+    else
+    {
+        printf("- %s has no %c cards...\n", gamePlayers[targetIndex].player->name, drawnCard.front);
+        printf("- Adding drawn card to %s's tank\n", gamePlayers[targetIndex].player->name);
+        addToTank(&gamePlayers[targetIndex], drawnCard);
+    }
+
+    pressAnyKey();
 }
 
 /**
