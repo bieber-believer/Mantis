@@ -459,11 +459,69 @@ void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card deck[],
 }
 
 /**
+ * Checks if there is a winner
  * 
+ * @param gamePlayers The players playing the game
+ * @param numGamePlayers Number of players playing the game
+ * @param deckSize Number of cards remaining in the deck
+ * @param winningPoints The points the players must have in order to win
+ * @return The index number of the winner, -1 if no winner yet
  */
-int checkWinner()
+int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int deckSize, int winnningPoints)
 {
+    int winnerIndex = -1;
+    int i, j;
+    int tie = 0; //1 if there is a tie
+    int highestScore=0, mostTankCards=0;
+    int totalTank = 0; // the total number of cards in a tank
 
+    //check if there is a player who has already reached the winning points
+    for(i = 0; i < numGamePlayers; i++)
+        if(gamePlayers[i].score >= winnningPoints)
+            winnerIndex = i;
+
+    //if draw pile runs out and no player got score >= winningPoints
+    if(deckSize == 0 && winnerIndex == -1)
+    {
+        for(i = 0; i < numGamePlayers; i++)
+        {
+            if(gamePlayers[i].score > highestScore)
+            {
+                highestScore = gamePlayers[i].score;
+                winnerIndex = i;
+            }
+        }
+
+        //check is there is anyone with the same score
+        for(i = 0; i <numGamePlayers && tie == 0; i++)
+        {
+            if(gamePlayers[i].score == highestScore && i != winnerIndex)
+            {
+                tie = 1;
+            }
+        }
+
+        //if there is a tie, look for the players with the most tank cards
+        if(tie == 1)
+        {
+            for(i = 0; i < numGamePlayers; i++)
+            {
+                totalTank = 0;
+
+                for(j = 0; j < 7; j++)
+                {
+                    totalTank += gamePlayers[i].tank[j];
+                }
+
+                if(totalTank > mostTankCards)
+                {
+                    mostTankCards = totalTank;
+                    winnerIndex = i;
+                }
+            }
+        }
+    }
+    return winnerIndex;
 }
 
 /**
