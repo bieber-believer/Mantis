@@ -57,3 +57,17 @@ void displayHeader()
     printf(" |                                    |\n");
     printf(" +------------------------------------+\n\n");
 }
+
+/**
+ * Displays the drawn card in an ASCII card
+ * 
+ * @param Card The drawn card
+ */
+void displayDrawnCard(Card card)
+{
+    printf(".-----.\n");
+    printf("|  %c  |\n", card.front);
+    printf("|     |\n");
+    printf("|  %d  |\n", card.point);
+    printf(".-----.\n");
+}
