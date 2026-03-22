@@ -10,3 +10,85 @@
 #include <string.h>
 
 #include "defsDy.h"
+
+/* ----- function implementation ----- */
+
+/**
+ * 
+ */
+void newGame()
+{
+
+}
+
+/**
+ * 
+ */
+void displayHowToPlay()
+{
+
+}
+
+/**
+ * 
+ */
+void sortByWins()
+{
+
+}
+
+/**
+ * 
+ */
+void sortByScore()
+{
+
+}
+
+/**
+ * 
+ */
+void displayTop10Wins()
+{
+
+}
+
+/**
+ * 
+ */
+void displayTop10Score()
+{
+
+}
+
+/**
+ * 
+ */
+void displayTop10()
+{
+
+}
+
+/**
+ * 
+ */
+void changeSettings()
+{
+
+}
+
+/**
+ * 
+ */
+void displayAcknowledgements()
+{
+
+}
+
+/**
+ * 
+ */
+void mainMenu()
+{
+    
+}
