@@ -53,11 +53,66 @@ int usernameExists(Player players[], int numPlayers, User name)
 }
 
 /**
+ *  Registeres a play and add them to players.txt
  * 
+ * @param players The array of registered players
+ * @param numPlayers Number of registered players to be updated
+ * @param success Updates the variable to if successfully registered
  */
-void registerPlayer()
+void registerPlayer(Player players[], int *numPlayers, int *success)
 {
+    int loop = 1, exists = 0;
+    FILE *fp;
+    User newUsername;
 
+    *success = 0;
+
+    while(loop == 1)
+    {   
+        if(*numPlayers >= MAX_PLAYERS)
+        {
+            printf("\nCan't register. Max number of players reached.\n");
+            pressAnyKey();
+            loop = 0;
+        }
+        else
+        {
+            printf("\nEnter username (max 36 characters): ");
+            scanf("%36s", newUsername);
+            while(getchar() != '\n');
+
+            //check if it exists
+            exists = usernameExists(players, *numPlayers, newUsername);
+
+            if(exists == 1)
+                printf("Username already exists. Try again.\n");
+            else
+            {
+                //add to array
+                strcpy(players[*numPlayers].name, newUsername);
+                players[*numPlayers].wins = 0;
+                players[*numPlayers].highestScore = 0;
+
+                //add to txt file
+                fp = fopen(PLAYER_FILE, "a");
+                fprintf(fp, "%s %d %d\n", newUsername, 0, 0);
+                fclose(fp);
+
+                //update the number of players
+                *numPlayers += 1;
+                iSetColor(I_COLOR_CYAN);
+                printf("\n%s registered! Welcome!\n", newUsername);
+                iSetColor(I_COLOR_WHITE);
+
+                *success = 1;
+
+                pressAnyKey();
+
+                //exit loop
+                loop = 0;
+            }
+        }
+    }
 }
 
 /**
