@@ -62,5 +62,45 @@ typedef struct{
 }Settings;
 
 /* -----   function prototypes   ----- */
+//files.c
+void mantisToStruct(Card deck[]);
+void playersToStruct(Player players[], int *numPlayers);
+void savePlayers(Player players[], int numPlayers);
+
+//design.c
+void displayTitle();
+void pressAnyKey();
+void displayHeader();
+void displayDrawnCard(Card card);
+void displayTrophy();
+
+//menu.c
+void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize, Settings currSettings);
+void displayHowToPlay();
+void sortByWins(Player players[], Player topWins[], int numPlayers);
+void sortByScore(Player players[], Player topScore[], int numPlayers);
+void displayTop10Wins(Player topWins[], int numPlayers);
+void displayTop10Score(Player topScore[], int numPlayers);
+void displayTop10(Player players[], Player topWins[], Player topScore[], int numPlayers);
+void changeSettings(Settings *currSettings);
+void displayAcknowledgements();
+void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, Settings *currSettings, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize);
+
+//game.c
+void getNumPlaying(int *numGamePlayers);
+int usernameExists(Player players[], int numPlayers, User name);
+void registerPlayer(Player players[], int *numPlayers, int *success);
+void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[], int numGamePlayers);
+int hasColor(Card card, GamePlayer player);
+int getColorIndex(char color);
+Card drawCard(Card deck[], int *deckSize);
+void addToTank(GamePlayer *gamePlayer, Card card);
+void shuffleAndDeal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed);
+void tryToScore(Card deck[], int *deckSize, GamePlayer *player);
+void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int currentPlayerIndex);
+void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int deckSize);
+int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int deckSize, int winnningPoints);
+void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex);
+void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int *deckSize, Settings currSettings);
 
 #endif
