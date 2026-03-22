@@ -220,11 +220,32 @@ int hasColor()
 }
 
 /**
+ * Get the index corresponding to the color 
+ * Used for accessing tank[] and tankPoints[]
  * 
+ * @param color The color character (R,O,Y,G,B,I,V)
+ * @return The index number of the color (0=R, 1=O, 2=Y, 3=G, 4=B, 5=I, 6=V)
  */
-int getColorIndex()
+int getColorIndex(char color)
 {
+    int index;
 
+    if(color == 'R') 
+        index = 0;
+    else if(color == 'O')
+        index = 1;
+    else if(color == 'Y')
+        index = 2;
+    else if(color == 'G')
+        index = 3;
+    else if(color == 'B')
+        index = 4;
+    else if(color == 'I')
+        index = 5;
+    else
+        index = 6;
+
+    return index;
 }
 
 /**
