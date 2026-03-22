@@ -212,11 +212,17 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
 }
 
 /**
+ * Check if the player has at least one card of card's front color in their tank
  * 
+ * @param card The card thats being checked
+ * @param player The player whose tank is being checked
+ * 
+ * @return 1 if the players has at least 1 card of that color, 0 otherwise
  */
-int hasColor()
+int hasColor(Card card, GamePlayer player)
 {
-
+    int index = getColorIndex(card.front);
+    return player.tank[index] > 0;
 }
 
 /**
