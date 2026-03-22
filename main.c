@@ -26,6 +26,11 @@ int main()
     Player topWins[MAX_PLAYERS];
     Player topScore[MAX_PLAYERS];
 
+    Settings currSettings;
+    currSettings.winningPoints = 20;
+    initRandom();
+    currSettings.seed = randomInt();
+
     //load data
 
     //call mainMenu
