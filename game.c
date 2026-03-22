@@ -314,11 +314,41 @@ void shuffleAndDeal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int nu
 }
 
 /**
+ * Draws the top card from the deck. If the player already has that color in their tank, all cards of that 
+ * color is moved to their sccore pile. Otherwise the card is added to their tank.
  * 
+ * @param deck The game deck to draw from
+ * @param deckSize Number of cards reamining in the deck
+ * @param player Current player whose turn is being resolved
  */
-void tryToScore()
+void tryToScore(Card deck[], int *deckSize, GamePlayer *player)
 {
+    Card drawnCard = drawCard(deck, deckSize);
+    int colorIndex = getColorIndex(drawnCard.front);
 
+    printf("\nResolving turn for %s...\n\n", player->player->name);
+    displayDrawnCard(drawnCard);
+    printf("\nDrawn Card: %c (%d pt/s)\n", drawnCard.front, drawnCard.point);
+
+    if(hasColor(drawnCard, *player) == 1)
+    {
+        printf("- %s has (%d) %c card/s worth a total of (%d) pt/s!\n", player->player->name, player->tank[colorIndex], drawnCard.front, player->tankPoints[colorIndex]);
+        //update the score
+        player->score += player->tankPoints[colorIndex] + drawnCard.point;
+        printf("- +%d point/s to player's score pile!\n", player->tankPoints[colorIndex] + drawnCard.point);
+
+        //reset the tank
+        player->tank[colorIndex] = 0;
+        player->tankPoints[colorIndex] = 0;
+    }
+    else
+    {
+        printf("- %s has no %c cards...\n", player->player->name, drawnCard.front);
+        printf("- Adding drawn card to %s's tank.\n", player->player->name);
+        addToTank(player, drawnCard);
+    }
+
+    pressAnyKey();
 }
 
 /**
