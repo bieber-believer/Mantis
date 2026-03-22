@@ -123,7 +123,7 @@ void registerPlayer(Player players[], int *numPlayers, int *success)
  * @param gamePlayes The array where the players playing will be stored
  * @param numGamePlayers Number of players playing
  */
-void playerSelection(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers)
+void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[], int numGamePlayers)
 {
     int registered; // 1 if player has been successfully registered
     int numSelected = 0; // the number of players that has been selected
@@ -131,7 +131,7 @@ void playerSelection(Player players[], int numPlayers, GamePlayer gamePlayers[],
     int i, j;
 
     //set picked variable in players to 0
-    for(i = 0; i < numPlayers; i++)
+    for(i = 0; i < *numPlayers; i++)
         players[i].picked = 0;
 
     while(numSelected < numGamePlayers) 
@@ -151,7 +151,7 @@ void playerSelection(Player players[], int numPlayers, GamePlayer gamePlayers[],
         printf("\t[0] Add new player\n");
 
         //show the players they can select
-        for(i = 0; i < numPlayers; i++)
+        for(i = 0; i < *numPlayers; i++)
         {
             if(players[i].picked == 1)
             {
@@ -171,16 +171,16 @@ void playerSelection(Player players[], int numPlayers, GamePlayer gamePlayers[],
 
         if(choice == 0)
         {
-            registerPlayer();
+            registerPlayer(players, numPlayers, &registered);
 
             if(registered == 1)
             {
-                players[numPlayers - 1].picked = 1;
-                gamePlayers[numSelected].player = &players[numPlayers - 1];
+                players[*numPlayers - 1].picked = 1;
+                gamePlayers[numSelected].player = &players[*numPlayers - 1];
                 numSelected++;
             }
         }
-        else if(choice >= 1 && choice <= numPlayers)
+        else if(choice >= 1 && choice <= *numPlayers)
         {
             if(players[choice-1].picked == 1)
             {
