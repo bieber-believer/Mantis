@@ -32,11 +32,24 @@ void getNumPlaying(int *numGamePlayers)
 }
 
 /**
+ * Check if a username exists
  * 
+ * @param players The array of registered players
+ * @param numPlayers Number of registered players
+ * @param name The username to check
+ * 
+ * @return 1 if username exits, 0 otherwise
  */
-int usernameExists()
+int usernameExists(Player players[], int numPlayers, User name)
 {
+    int i;
+    int exists = 0;
 
+    for(i = 0; i < numPlayers; i++)
+        if(strcmp(name, players[i].name) == 0)
+            exists =1;
+
+    return exists;
 }
 
 /**
