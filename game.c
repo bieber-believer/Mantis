@@ -597,9 +597,77 @@ void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
 }
 
 /**
+ * Handles the turn order and checks for a winner after each turn then displays the results when the game ends
  * 
+ * @param players The array of registered players
+ * @param numPlayers Number of registered players
+ * @param gamePlayers The array of players playing the game
+ * @param numGamePlayers Number of players playing
+ * @param deck The deck of cards
+ * @param deckSize Number of cards remaining in the deck
+ * @param currSettings The current game settings
  */
-void gameStart()
+void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int *deckSize, Settings currSettings)
 {
+    int choice;
+    int winnderIndex = -1;
+    int currentPlayerIndex = 0;
 
+    //shuffle and deal cards
+    system("cls");
+    printf("         _\\|/_\n");
+    printf("         (o o)\n");
+    printf(" +----oOO-{_}-OOo---------------------+\n");
+    printf(" |                                    |\n");
+    printf(" |          M  A  N  T  I  S          |\n");
+    printf(" |           Game Starting            |\n");
+    printf(" |                                    |\n");
+    printf(" +------------------------------------+\n\n");
+    shuffleAndDeal(deck, deckSize, gamePlayers, numGamePlayers, currSettings.seed);
+    printf("Deck shuffled! Dealing Tank cards...\n\n");
+    displayGameState(gamePlayers, numGamePlayers, deck, *deckSize);
+    pressAnyKey();
+
+    //loop
+    while(winnderIndex == -1)
+    {
+        system("cls");
+
+        //display game state
+        displayHeader();
+        displayGameState(gamePlayers, numGamePlayers, deck, *deckSize);
+
+        //ask player want they wanna do
+        printf("%s, what would you like to do?\n", gamePlayers[currentPlayerIndex].player->name);
+        printf("  [1] Try to Score\n");
+        printf("  [2] Try to Steal\n\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        while(getchar() != '\n');
+
+        if(choice == 1)
+            tryToScore(deck, deckSize, &gamePlayers[currentPlayerIndex]);
+        else if(choice == 2)
+            tryToSteal(deck, deckSize, gamePlayers, numGamePlayers, currentPlayerIndex);
+        else
+        {
+            printf("Invalid input. Try again.\n");
+            pressAnyKey();
+        }
+
+        //go to next play only if a valid choice was made
+        if(choice == 1 || choice == 2)
+        {
+            winnderIndex = checkWinner(gamePlayers, numGamePlayers, *deckSize, currSettings.winningPoints);
+            
+            if(currentPlayerIndex == numGamePlayers - 1)
+                currentPlayerIndex = 0;
+            else
+                currentPlayerIndex++;
+        }
+    }
+
+    system("cls");
+    showResults(gamePlayers, numGamePlayers, winnderIndex);
+    savePlayers(players, numPlayers);
 }
