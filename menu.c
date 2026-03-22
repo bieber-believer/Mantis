@@ -238,6 +238,7 @@ void displayTop10(Player players[], Player topWins[], Player topScore[], int num
             {
                 case 1:
                     system("cls");
+                    sortByWins(players, topScore, numPlayers);
                     displayTop10Wins(topWins, numPlayers);
                     pressAnyKey();
                     loop = 0; // user goes back to main menu
