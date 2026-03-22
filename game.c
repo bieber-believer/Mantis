@@ -271,11 +271,16 @@ Card drawCard(Card deck[], int *deckSize)
 }
 
 /**
+ * Adds a card to a players tank based on the front color
  * 
+ * @param gamePlayer The player whose tank will be updated
+ * @param card  The drawn card
  */
-void addToTank()
+void addToTank(GamePlayer *gamePlayer, Card card)
 {
-
+    int index = getColorIndex(card.front);
+    gamePlayer->tank[index]++;
+    gamePlayer->tankPoints[index] += card.point;
 }
 
 /**
