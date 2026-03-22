@@ -35,6 +35,15 @@ typedef struct{
 }Player;
 
 /**
+ * Represents a card
+ */
+typedef struct{
+    char front;     // the actual color of the card
+    char back[4];   // the colors it could possible be
+    int point;      // the points of the card
+}Card;
+
+/**
  * Represents a player's state during a game
  */
 typedef struct{
