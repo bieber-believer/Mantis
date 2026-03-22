@@ -26,6 +26,12 @@ int main()
     Player topWins[MAX_PLAYERS];
     Player topScore[MAX_PLAYERS];
 
+    Card deck[TOTAL_CARDS];
+    int deckSize;
+
+    GamePlayer gamePlayers[MAX_GAME_PLAYERS];
+    int numGamePlayers = 0;
+
     Settings currSettings;
     currSettings.winningPoints = 20;
     initRandom();
