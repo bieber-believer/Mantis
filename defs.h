@@ -98,6 +98,9 @@ typedef struct{
 //|    function prototypes   |
 //+==========================+
 // game.c
+void displayHeader();
+void displayDrawnCard(Card card);
+void displayTrophy();
 void getNumPlaying(int *numGamePlayers);
 int usernameExists(Player players[], int numPlayers, User name);
 void registerPlayer(Player players[], int *numPlayers, int *success);
@@ -116,6 +119,9 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
 
 // menu.c
 void displayTitle();
+void pressAnyKey();
+void displayHowToPlay();
+void displayAcknowledgements();
 void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize, Settings currSettings);
 void sortByWins(Player players[], Player topWins[], int numPlayers);
 void sortByScore(Player players[], Player topScore[], int numPlayers);
