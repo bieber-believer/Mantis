@@ -431,11 +431,26 @@ void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGam
 }
 
 /**
+ * Displays the current state of the game like the player's tank, score, and the top card of the deck
  * 
+ * @param gamePlayers The players playing the game
+ * @param numGamePlayers Number of players playing
+ * @param deck The game deck
+ * @param deckSize Number of cards remaining in the deck
  */
-void displayGameState()
+void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int deckSize)
 {
+    int i;
 
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        printf(" ================================================\n");
+        printf("   %-36s Score: %d\n", gamePlayers[i].player->name, gamePlayers[i].score);
+        printf("\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
+    }
+
+    printf(" ================================================\n");
+    printf("\n Top Deck: %s | Cards Remaining: %d\n\n", deck[0].back, deckSize);
 }
 
 /**
