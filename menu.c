@@ -54,19 +54,73 @@ void displayHowToPlay()
 }
 
 /**
+ * Sorts players by their wins in descending order
  * 
+ * @param players The array with all the registered players
+ * @param topWins The array where the sorted players will be stored
+ * @param numPlayers Number of registered players
  */
-void sortByWins()
+void sortByWins(Player players[], Player topWins[], int numPlayers)
 {
+    int i, j, max;
+    Player temp;
 
+    //put all the registered players in topWins
+    for(i = 0; i < numPlayers; i++)
+        topWins[i] = players[i];
+
+    //start sorting
+    for(i = 0; i < numPlayers - 1; i++)
+    {
+        max = i;
+
+        for(j= i + 1; j < numPlayers; j++)
+        {
+            if(topWins[j].wins > topWins[max].wins)
+            max = j;
+        }
+
+        if(i != max)
+        {
+            temp = topWins[i];
+            topWins[i] = topWins[max];
+            topWins[max] = temp;
+        }
+    }
 }
 
 /**
+ * Sorts players by their score in descending order
  * 
+ * @param players The array with all the registered players
+ * @param topScore The array where the sorted players will be stored
+ * @param numPlayers Number of registered players
  */
-void sortByScore()
+void sortByScore(Player players[], Player topScore[], int numPlayers)
 {
+    int i, j, max;
+    Player temp;
 
+    //store the players in the top score
+    for(i = 0; i < numPlayers; i++)
+        topScore[i] = players[i];
+
+    //start sorting
+    for(i = 0; i < numPlayers - 1; i++)
+    {
+        max = i;
+
+        for(j = i + 1; j < numPlayers; j++)
+            if(topScore[j].highestScore > topScore[max].highestScore)
+                max = j;
+        
+        if(i != max)
+        {
+            temp = topScore[i];
+            topScore[i] = topScore[max];
+            topScore[max] = temp;
+        }
+    }
 }
 
 /**
