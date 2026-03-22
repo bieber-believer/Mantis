@@ -228,11 +228,25 @@ int getColorIndex()
 }
 
 /**
+ * Draws the top card from the deck and move the remaining cards forward
  * 
+ * @param deck The card deck to draw from
+ * @param deckSize Number of cards in the deck
+ * 
+ * @return drawn card
+ * @pre deckSize must be greater than 0
  */
-Card drawCard()
+Card drawCard(Card deck[], int *deckSize)
 {
+    int i;
+    Card drawn = deck[0];
 
+    for(i = 0; i < *deckSize - 1; i++)
+        deck[i] = deck[i + 1];
+
+    *deckSize -= 1;
+
+    return drawn;
 }
 
 /**
