@@ -125,14 +125,13 @@ void registerPlayer(Player players[], int *numPlayers, int *success)
     {   
         if(*numPlayers >= MAX_PLAYERS)
         {
-            printf("Can't register. Max number of players reached.\n");
-            printf("Press any key...\n");
-            getchar();
+            printf("\nCan't register. Max number of players reached.\n");
+            pressAnyKey();
             loop = 0;
         }
         else
         {
-            printf("Enter username (max 36 characters): ");
+            printf("\nEnter username (max 36 characters): ");
             scanf("%36s", newUsername);
             while(getchar() != '\n');
 
@@ -155,12 +154,13 @@ void registerPlayer(Player players[], int *numPlayers, int *success)
 
                 //update the number of players
                 *numPlayers += 1;
-                printf("%s registered! Welcome!\n", newUsername);
+                iSetColor(I_COLOR_CYAN);
+                printf("\n%s registered! Welcome!\n", newUsername);
+                iSetColor(I_COLOR_WHITE);
 
                 *success = 1;
 
-                printf("Press any key...\n");
-                getchar();
+                pressAnyKey();
 
                 //exit loop
                 loop = 0;
@@ -240,8 +240,7 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
             if(players[choice-1].picked == 1)
             {
                 printf("\nThat player is already selected. Try again.\n");
-                printf("Press any key...\n");
-                getchar();
+                pressAnyKey();
             }
             else
             {
@@ -253,8 +252,7 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
         else
         {
             printf("Invalid input. Try again.\n");
-            printf("Press any key...\n");
-            getchar();
+            pressAnyKey();
         }
    }
 
@@ -331,10 +329,10 @@ void tryToScore(Card deck[], int *deckSize, GamePlayer *player)
 
     if(hasColor(drawnCard, *player) == 1)
     {
-        printf("%s has (%d) %c card/s worth a total of (%d) pt/s!\n", player->player->name, player->tank[colorIndex], drawnCard.front, player->tankPoints[colorIndex]);
+        printf("- %s has (%d) %c card/s worth a total of (%d) pt/s!\n", player->player->name, player->tank[colorIndex], drawnCard.front, player->tankPoints[colorIndex]);
         //update the score
         player->score += player->tankPoints[colorIndex] + drawnCard.point;
-        printf("+%d point/s to player's score pile!\n", player->tankPoints[colorIndex] + drawnCard.point);
+        printf("- +%d point/s to player's score pile!\n", player->tankPoints[colorIndex] + drawnCard.point);
 
         //reset the tank
         player->tank[colorIndex] = 0;
@@ -342,13 +340,12 @@ void tryToScore(Card deck[], int *deckSize, GamePlayer *player)
     }
     else
     {
-        printf("%s has no %c cards...\n", player->player->name, drawnCard.front);
-        printf("Adding drawn card to %s's tank.\n", player->player->name);
+        printf("- %s has no %c cards...\n", player->player->name, drawnCard.front);
+        printf("- Adding drawn card to %s's tank.\n", player->player->name);
         addToTank(player, drawnCard);
     }
 
-    printf("Press any key...\n");
-    getchar();
+    pressAnyKey();
 }
 
 /**
@@ -409,7 +406,7 @@ void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGam
 
     if(hasColor(drawnCard, gamePlayers[targetIndex]) == 1)
     {
-        printf("%s has (%d) %c card/s!\n", gamePlayers[targetIndex].player->name, gamePlayers[targetIndex].tank[colorIndex], drawnCard.front);
+        printf("- %s has (%d) %c card/s!\n", gamePlayers[targetIndex].player->name, gamePlayers[targetIndex].tank[colorIndex], drawnCard.front);
 
         //add to the players tank
         gamePlayers[currentPlayerIndex].tank[colorIndex] += gamePlayers[targetIndex].tank[colorIndex] + 1;
@@ -419,17 +416,16 @@ void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGam
         gamePlayers[targetIndex].tank[colorIndex] = 0;
         gamePlayers[targetIndex].tankPoints[colorIndex] = 0;
 
-        printf("+%d (%c) cards to %s's tank!\n", gamePlayers[currentPlayerIndex].tank[colorIndex], drawnCard.front, gamePlayers[currentPlayerIndex].player->name);
+        printf("- +%d (%c) cards to %s's tank!\n", gamePlayers[currentPlayerIndex].tank[colorIndex], drawnCard.front, gamePlayers[currentPlayerIndex].player->name);
     }
     else
     {
-        printf("%s has no %c cards...\n", gamePlayers[targetIndex].player->name, drawnCard.front);
-        printf("Adding drawn card to %s's tank\n", gamePlayers[targetIndex].player->name);
+        printf("- %s has no %c cards...\n", gamePlayers[targetIndex].player->name, drawnCard.front);
+        printf("- Adding drawn card to %s's tank\n", gamePlayers[targetIndex].player->name);
         addToTank(&gamePlayers[targetIndex], drawnCard);
     }
 
-    printf("Press any key...\n");
-    getchar();
+    pressAnyKey();
 }
 
 /**
@@ -610,8 +606,7 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
     shuffleAndDeal(deck, deckSize, gamePlayers, numGamePlayers, currSettings.seed);
     printf("Deck shuffled! Dealing Tank cards...\n\n");
     displayGameState(gamePlayers, numGamePlayers, deck, *deckSize);
-    printf("Press any key...\n");
-    getchar();
+    pressAnyKey();
 
     //loop
     while(winnderIndex == -1)
@@ -637,8 +632,7 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
         else
         {
             printf("Invalid input. Try again.\n");
-            printf("Press any key...\n");
-            getchar();
+            pressAnyKey();
         }
 
         //go to next play only if a valid choice was made
@@ -727,6 +721,5 @@ void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
         }
     }
 
-    printf("\n  Press any key...\n");
-    getchar();
+    pressAnyKey();
 }

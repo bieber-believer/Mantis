@@ -43,7 +43,7 @@ void displayTitle()
 void pressAnyKey()
 {
     iHideCursor();
-    printf("Press any key...\n");
+    printf("\nPress any key...\n");
     getchar();
     iShowCursor();
 }
@@ -269,9 +269,8 @@ void displayTop10(Player players[], Player topWins[], Player topScore[], int num
         if(numPlayers == 0)
         {
             system("cls");
-            printf("No player has played :(\n\n");
-            printf("Press any key...\n");
-            getchar();
+            printf("No player has played :(\n");
+            pressAnyKey();
             loop = 0;
         }
         else
@@ -290,15 +289,13 @@ void displayTop10(Player players[], Player topWins[], Player topScore[], int num
                 case 1:
                     system("cls");
                     displayTop10ByWins(players, topWins, numPlayers);
-                    printf("\nPress any key to go back...\n");
-                    getchar();
+                    pressAnyKey();
                     loop = 0; // user goes back to main menu
                     break;
                 case 2:
                     system("cls");
                     displayTop10ByScore(players, topScore, numPlayers);
-                    printf("\nPress any key to go back...\n");
-                    getchar();
+                    pressAnyKey();
                     loop = 0; // user goes back to main menu
                     break;
                 case 0:
@@ -306,8 +303,7 @@ void displayTop10(Player players[], Player topWins[], Player topScore[], int num
                     break;
                 default:
                     printf("Invalid input. Try again.\n");
-                    printf("\nPress any key to go back...\n");
-                    getchar();
+                    pressAnyKey();
             }
         }
     }
@@ -362,16 +358,14 @@ void changeSettings(Settings *currSettings)
             case 3:
                 currSettings->winningPoints = 20;
                 currSettings->seed = randomInt();
-                printf("Press any key...\n");
-                getchar();
+                pressAnyKey();
                 break;
             case 0:
                 loop = 0;
                 break;
             default:
                 printf("Invalid input. Try again.\n");
-                printf("Press any key...\n");
-                getchar();
+                pressAnyKey();
         }
     }
 }
@@ -410,16 +404,14 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
         {
             case 1:
                 system("cls");
-                printf("Enjoy the game!\n\n");
-                printf("Press any key...\n");
-                getchar();
+                printf("Enjoy the game!\n");
+                pressAnyKey();
                 newGame(players, numPlayers, gamePlayers, numGamePlayers, deck, deckSize, *currSettings);
                 break;
             case 2:
                 system("cls");
                 displayHowToPlay();
-                printf("\nPress any key...\n");
-                getchar();
+                pressAnyKey();
                 break;
             case 3:
                 displayTop10(players, topWins, topScore, *numPlayers);
@@ -430,8 +422,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
             case 5:
                 system("cls");
                 displayAcknowledgements();  
-                printf("\nPress any key...\n");
-                getchar();
+                pressAnyKey();
                 break;  
             case 0:
                 iSetColor(I_COLOR_CYAN);
@@ -440,8 +431,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
                 break;
             default:
                 printf("Invalid input. Try again.");
-                printf("Press any key...\n");
-                getchar();
+                pressAnyKey();
         }
     }
 }
