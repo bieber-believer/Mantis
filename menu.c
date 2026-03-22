@@ -38,6 +38,17 @@ void displayTitle()
 }
 
 /**
+ * Asks user to press any key in order to move on
+ */
+void pressAnyKey()
+{
+    iHideCursor();
+    printf("Press any key...\n");
+    getchar();
+    iShowCursor();
+}
+
+/**
  * Displays the tutorial of the game
  */
 void displayHowToPlay()
