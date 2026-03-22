@@ -525,11 +525,75 @@ int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int deckSize, int 
 }
 
 /**
+ * Display the results of the game and updates the wins and highest score of a player
  * 
+ * @param gamePlayers The players playing the game
+ * @param numGamePlayers Number of players playing
+ * @param winnerIndex The index of the winner in gamePlayers
  */
-void showResults()
+void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
 {
+    int i;
+    int firstWinner = 1; // 1 if only 1 winner
 
+    displayTrophy();
+
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        iSetColor(I_COLOR_WHITE);
+        printf(" ================================================\n");
+        if(gamePlayers[i].score == gamePlayers[winnderIndex].score)
+            iSetColor(I_COLOR_GREEN);
+        printf("   %-36s Score: %d", gamePlayers[i].player->name, gamePlayers[i].score);
+
+        if(gamePlayers[i].score > gamePlayers[i].player->highestScore)
+        {
+            iSetColor(I_COLOR_CYAN);
+            printf("  *** NEW BEST! ***");
+        }
+
+        iSetColor(I_COLOR_WHITE);
+        printf("\n\tR:%d  O:%d  Y:%d  G:%d  B:%d  I:%d  V:%d\n", gamePlayers[i].tank[0], gamePlayers[i].tank[1], gamePlayers[i].tank[2], gamePlayers[i].tank[3], gamePlayers[i].tank[4], gamePlayers[i].tank[5], gamePlayers[i].tank[6]);
+    }
+
+    printf(" ================================================\n\n");
+
+    printf("  >> ");
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        if(gamePlayers[i].score == gamePlayers[winnderIndex].score)
+        {
+            if(!firstWinner) printf(" & ");
+            iSetColor(I_COLOR_GREEN);
+            printf("%s", gamePlayers[i].player->name);
+            iSetColor(I_COLOR_WHITE);
+            firstWinner = 0;
+        }
+    }
+    printf(" WIN! <<\n\n  [Record Updated]\n");
+
+    for(i = 0; i < numGamePlayers; i++)
+    {
+        if(gamePlayers[i].score == gamePlayers[winnderIndex].score)
+        {
+            gamePlayers[i].player->wins++;
+            printf("  %s: +1 win (Total wins: %d)\n",
+                gamePlayers[i].player->name, gamePlayers[i].player->wins);
+        }
+
+        if(gamePlayers[i].score > gamePlayers[i].player->highestScore)
+        {
+            iSetColor(I_COLOR_CYAN);
+            printf("  %s: *** NEW BEST! Old: %d | New: %d ***\n",
+                gamePlayers[i].player->name,
+                gamePlayers[i].player->highestScore,
+                gamePlayers[i].score);
+            iSetColor(I_COLOR_WHITE);
+            gamePlayers[i].player->highestScore = gamePlayers[i].score;
+        }
+    }
+
+    pressAnyKey();
 }
 
 /**
