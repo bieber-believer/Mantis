@@ -5,7 +5,7 @@
  *  Last Modified   : March 22, 2026
  ******************************************************************************/
 
- /* ----- preprocessor directives ----- */
+/* ----- preprocessor directives ----- */
 #include <stdio.h>
 #include <string.h>
 

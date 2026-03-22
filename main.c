@@ -6,7 +6,7 @@
  *  Acknowledgments : 
  ******************************************************************************/
 
- /* ----- preprocessor directives ----- */
+/* ----- preprocessor directives ----- */
 #include <stdio.h>
 
 #include "defsDy.h"
