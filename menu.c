@@ -253,7 +253,9 @@ void displayTop10(Player players[], Player topWins[], Player topScore[], int num
                     loop = 0;
                     break;
                 default:
+                    iSetColor(I_COLOR_RED);
                     printf("Invalid input. Try again.\n");
+                    iSetColor(I_COLOR_WHITE);
                     pressAnyKey();
             }
         }
@@ -315,7 +317,9 @@ void changeSettings(Settings *currSettings)
                 loop = 0;
                 break;
             default:
+                iSetColor(I_COLOR_RED);
                 printf("Invalid input. Try again.\n");
+                iSetColor(I_COLOR_WHITE);
                 pressAnyKey();
         }
     }
@@ -401,7 +405,9 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
                 loop = 0; // set loop to 0 to break out the loop
                 break;
             default:
+                iSetColor(I_COLOR_RED);
                 printf("Invalid input. Try again.");
+                iSetColor(I_COLOR_WHITE);
                 pressAnyKey();
         }
     }

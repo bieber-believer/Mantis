@@ -26,7 +26,12 @@ void getNumPlaying(int *numGamePlayers)
         while(getchar() != '\n');
 
         if(*numGamePlayers < MIN_GAME_PLAYERS || *numGamePlayers > MAX_GAME_PLAYERS)
+        {
+            iSetColor(I_COLOR_RED);
             printf("Invalid input. Minimum of %d players and maximum of %d players\n\n", MIN_GAME_PLAYERS, MAX_GAME_PLAYERS);
+            iSetColor(I_COLOR_WHITE);
+        }
+            
 
     }while(*numGamePlayers < MIN_GAME_PLAYERS || *numGamePlayers > MAX_GAME_PLAYERS);
 }
@@ -71,7 +76,9 @@ void registerPlayer(Player players[], int *numPlayers, int *success)
     {   
         if(*numPlayers >= MAX_PLAYERS)
         {
+            iSetColor(I_COLOR_RED);
             printf("\nCan't register. Max number of players reached.\n");
+            iSetColor(I_COLOR_WHITE);
             pressAnyKey();
             loop = 0;
         }
@@ -85,7 +92,12 @@ void registerPlayer(Player players[], int *numPlayers, int *success)
             exists = usernameExists(players, *numPlayers, newUsername);
 
             if(exists == 1)
+            {
+                iSetColor(I_COLOR_RED);
                 printf("Username already exists. Try again.\n");
+                iSetColor(I_COLOR_WHITE);
+            }
+                
             else
             {
                 //add to array
@@ -184,7 +196,9 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
         {
             if(players[choice-1].picked == 1)
             {
+                iSetColor(I_COLOR_RED);
                 printf("\nThat player is already selected. Try again.\n");
+                iSetColor(I_COLOR_WHITE);
                 pressAnyKey();
             }
             else
@@ -196,7 +210,9 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
         }
         else
         {
+            iSetColor(I_COLOR_RED);
             printf("Invalid input. Try again.\n");
+            iSetColor(I_COLOR_WHITE);
             pressAnyKey();
         }
     }
@@ -386,12 +402,16 @@ void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGam
 
         if(choice < 1 || choice > numGamePlayers)
         {
+            iSetColor(I_COLOR_RED);
             printf("Invalid input. Try again.\n");
+            iSetColor(I_COLOR_WHITE);
             valid = 0;
         }
         else if(choice - 1 == currentPlayerIndex)
         {
+            iSetColor(I_COLOR_RED);
             printf("You cannot steal from yourself. Try again.\n");
+            iSetColor(I_COLOR_WHITE);
             valid = 0;
         }
 
@@ -653,7 +673,9 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
             tryToSteal(deck, deckSize, gamePlayers, numGamePlayers, currentPlayerIndex);
         else
         {
+            iSetColor(I_COLOR_RED);
             printf("Invalid input. Try again.\n");
+            iSetColor(I_COLOR_WHITE);
             pressAnyKey();
         }
 
