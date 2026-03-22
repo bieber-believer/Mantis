@@ -186,11 +186,62 @@ void displayTop10Score(Player topScore[], int numPlayers)
 }
 
 /**
+ * Asks user how they want to view the top 10 players then displays the top 10 of their chosen choice
  * 
+ * @param players The array of registered players
+ * @param topWins The array of players sorted by most to least wins
+ * @param topScore The array of players sorted by highest to lowest score
+ * @param numPlayers Number of registered players
  */
-void displayTop10()
+void displayTop10(Player players[], Player topWins[], Player topScore[], int numPlayers)
 {
+    int loop = 1;
+    int choice;
 
+    while(loop == 1)
+    {
+        if(numPlayers == 0)
+        {
+            system("cls");
+            printf("No player has played :(\n");
+            pressAnyKey();
+            loop = 0;
+        }
+        else
+        {
+            system("cls");
+            printf("View top players by:\n");
+            printf("[1] Wins\n");
+            printf("[2] Highest Score\n");
+            printf("[0] Back to Main Menu\n\n");
+            printf(">> ");
+            scanf("%d", &choice);
+            while(getchar() != '\n');
+
+            switch(choice)
+            {
+                case 1:
+                    system("cls");
+                    displayTop10Wins(topWins, numPlayers);
+                    pressAnyKey();
+                    loop = 0; // user goes back to main menu
+                    break;
+                case 2:
+                    system("cls");
+                    sortByScore(players, topScore, numPlayers);
+                    displayTop10Score(topScore, numPlayers);
+                    pressAnyKey();
+                    loop = 0; // user goes back to main menu
+                    break;
+                case 0:
+                    loop = 0;
+                    break;
+                default:
+                    printf("Invalid input. Try again.\n");
+                    pressAnyKey();
+            }
+        }
+    }
 }
 
 /**
