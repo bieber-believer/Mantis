@@ -26,7 +26,7 @@
  */
 void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize, Settings currSettings)
 {
-        system("cls");
+    system("cls");
     *deckSize = TOTAL_CARDS;
     mantisToStruct(deck);
     //call getNumPlaying()
