@@ -45,7 +45,7 @@ int main()
     playersToStruct(players, &numPlayers);
 
     //call mainMenu
-    mainMenu(players, topWins, topScore, &numPlayers, gamePlayers, &currSettings, &numGamePlayers, deck, &deckSize);
+    mainMenu(players, topWins, topScore, &numPlayers, &currSettings, gamePlayers, &numGamePlayers, deck, &deckSize);
 
     return 0;
 }
