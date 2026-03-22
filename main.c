@@ -16,3 +16,18 @@
 #include "menu.c"
 #include "game.c"
 #include "design.c"
+
+int main()
+{
+    //variables
+    Player players[MAX_PLAYERS];
+    int numPlayers = 0;
+
+    Player topWins[MAX_PLAYERS];
+    Player topScore[MAX_PLAYERS];
+
+    //load data
+
+    //call mainMenu
+    return 0;
+}
