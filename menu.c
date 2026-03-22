@@ -337,8 +337,12 @@ void displayAcknowledgements()
  * @param topScore The array of players sorted by highest to lowest score
  * @param numPlayers Number of registered players
  * @param currSettings The game settings
+ * @param gamePlayers The players who will be playing the game
+ * @param numGamePlayers Number of players who will be playing
+ * @param deck The deck of cards
+ * @param deckSize Number of cards in the deck
  */
-void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlayers, Settings *currSettings)
+void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, Settings *currSettings, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize)
 {
     int loop = 1; // variable to keep the loop going
     int choice;  // where users choice will be stored
@@ -364,7 +368,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlay
                 system("cls");
                 printf("Enjoy the game!\n");
                 pressAnyKey();
-                newGame();
+                newGame(players, numPlayers, gamePlayers, numGamePlayers, deck, deckSize, *currSettings);
                 break;
             case 2:
                 system("cls");
@@ -372,7 +376,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlay
                 pressAnyKey();
                 break;
             case 3:
-                displayTop10(players, topWins, topScore, numPlayers);
+                displayTop10(players, topWins, topScore, *numPlayers);
                 break;
             case 4:
                 changeSettings(currSettings);
