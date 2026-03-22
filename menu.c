@@ -47,7 +47,9 @@ void displayHowToPlay()
     printf("of the card is the color that in on the front of the card.\n\n");
 
     printf("To start the turn, you have to choose between one of the two actions:\n");
+    iSetColor(I_COLOR_CYAN);
     printf("-Try to Score\n-Try to Steal\n\n");
+    iSetColor(I_COLOR_WHITE);
 
     printf("When you decide to try and score, you will draw the top card from the Draw Pile.\n");
     printf("Flip the card over and put it in your Tank. If the new card matches any existing card(s)\n");
@@ -60,7 +62,9 @@ void displayHowToPlay()
     printf("Tank. If the card does not match any of the cards in front of the chosen player, you will place the\n");
     printf("new card in the chosen player's Tank.\n\n");
 
+    iSetColor(I_COLOR_GREEN);
     printf("The first player to get a score higer or equal to the winning points win.\n\n");
+    iSetColor(I_COLOR_WHITE);
 
     printf("Source: https://www.geekyhobbies.com/mantis-rules/ \n");
 }
