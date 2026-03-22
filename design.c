@@ -31,3 +31,14 @@ void displayTitle()
     printf("|__|  |__| /__/     \\__\\ |__| \\__|     |__|     |__| |_______/    \n");
     iSetColor(I_COLOR_WHITE);
 }
+
+/**
+ * Asks user to press any key in order to continue
+ */
+void pressAnyKey()
+{
+    iHideCursor();
+    printf("\nPress any key...\n");
+    getchar();
+    iShowCursor();
+}
