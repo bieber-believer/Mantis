@@ -284,11 +284,27 @@ void addToTank(GamePlayer *gamePlayer, Card card)
 }
 
 /**
+ * Shuffles the deck and deals 4 cards to each player
  * 
+ * @param deck The deck of cards
+ * @param deckSize The number of cards in the deck
+ * @param gamePlayers The array of players playing
+ * @param numGamePlayers The numbers of players playing
+ * @param seed The seed value used for shuffling
+ * 
+ * @pre game player's tank must be initialized with 0
  */
-void shuffleAndDeal()
+void shuffleAndDeal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed)
 {
+    int i, j;
 
+    //shuffle the gamedeck
+    shuffle(deck, *deckSize, sizeof(Card), seed);
+
+    //deal 4 cards (draw a card and add it to the tank)
+    for(i = 0; i < numGamePlayers; i++)
+        for(j = 0; j < 4; j++)
+            addToTank(&gamePlayers[i], drawCard(deck, deckSize));
 }
 
 /**
