@@ -245,11 +245,64 @@ void displayTop10(Player players[], Player topWins[], Player topScore[], int num
 }
 
 /**
+ * Allows the user to change the settings of the game
  * 
+ * @param currSettings The settings they wish to change
+ * 
+ * @pre initRandom() has been called already
  */
-void changeSettings()
+void changeSettings(Settings *currSettings)
 {
+    int loop = 1;
+    int choice;
 
+    while(loop == 1)
+    {
+        system("cls");
+        printf("Settings:\n");
+        printf("Winning Points: %d points ", currSettings->winningPoints);
+        printf("(Default: 20 points)\n");
+        printf("Shuffle Seed: %d ", currSettings->seed);
+        printf("(Default: Random)\n\n"); 
+
+        iSetColor(I_COLOR_CYAN);
+        printf("Change Settings?\n");
+        iSetColor(I_COLOR_WHITE);
+        printf("[1] Winning Points\n");
+        printf("[2] Shuffle Seed\n");
+        printf("[3] Reset to Default\n");
+        printf("[0] Back to Main Menu\n\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        while(getchar() != '\n');
+        
+        switch (choice)
+        {
+            case 1:
+                printf("\nNew Winning Points?\n");
+                printf(">> ");
+                scanf("%d", &currSettings->winningPoints);
+                while(getchar() != '\n');
+                break;
+            case 2:
+                printf("\nNew Shuffle Seed?\n");
+                printf(">> ");
+                scanf("%d", &currSettings->seed);
+                while(getchar() != '\n');
+                break;
+            case 3:
+                currSettings->winningPoints = 20;
+                currSettings->seed = randomInt();
+                pressAnyKey();
+                break;
+            case 0:
+                loop = 0;
+                break;
+            default:
+                printf("Invalid input. Try again.\n");
+                pressAnyKey();
+        }
+    }
 }
 
 /**
