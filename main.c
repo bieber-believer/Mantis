@@ -30,7 +30,7 @@ int main()
     Player topScore[MAX_PLAYERS];               // array of players with the highest to lowest scores
 
     Card deck[TOTAL_CARDS];                     // deck of cards
-    int deckSize;                               // number of cards in deck
+    int deckSize = TOTAL_CARDS;                 // number of cards in deck
 
     GamePlayer gamePlayers[MAX_GAME_PLAYERS];   // array of players currently playing the game
     int numGamePlayers = 0;                     // number of players playing the game
