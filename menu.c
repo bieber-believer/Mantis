@@ -314,9 +314,66 @@ void displayAcknowledgements()
 }
 
 /**
+ * The main menu of the game
  * 
+ * @param players The array of registered players
+ * @param topWins The array of players sorted by most to least wins
+ * @param topScore The array of players sorted by highest to lowest score
+ * @param numPlayers Number of registered players
+ * @param currSettings The game settings
  */
-void mainMenu()
+void mainMenu(Player players[], Player topWins[], Player topScore[], int numPlayers, Settings *currSettings)
 {
+    int loop = 1; // variable to keep the loop going
+    int choice;  // where users choice will be stored
+    while(loop == 1)
+    {
+        system("cls");
+        displayTitle();
+        printf("\nMain Menu\n");
+        printf("[1] New Game\n");
+        printf("[2] How To Play\n");
+        printf("[3] View Statistics\n");
+        printf("[4] Settings\n");
+        printf("[5] Acknowledgements\n");
+        printf("[0] Exit\n\n");
 
+        printf(">> ");
+        scanf("%d", &choice);
+        while(getchar() != '\n');
+
+        switch(choice)
+        {
+            case 1:
+                system("cls");
+                printf("Enjoy the game!\n");
+                pressAnyKey();
+                newGame();
+                break;
+            case 2:
+                system("cls");
+                displayHowToPlay();
+                pressAnyKey();
+                break;
+            case 3:
+                displayTop10(players, topWins, topScore, numPlayers);
+                break;
+            case 4:
+                changeSettings(currSettings);
+                break;
+            case 5:
+                system("cls");
+                displayAcknowledgements();  
+                pressAnyKey();
+                break;  
+            case 0:
+                iSetColor(I_COLOR_CYAN);
+                printf("\nMay the force be with you. Bye!");
+                loop = 0; // set loop to 0 to break out the loop
+                break;
+            default:
+                printf("Invalid input. Try again.");
+                pressAnyKey();
+        }
+    }
 }
