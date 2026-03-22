@@ -38,7 +38,11 @@ int main()
     currSettings.seed = randomInt();
 
     //load data
+    mantisToStruct(deck);
+    playersToStruct(players, &numPlayers);
 
     //call mainMenu
+    mainMenu(players, topWins, topScore, &numPlayers, gamePlayers, &currSettings, &numGamePlayers, deck, &deckSize);
+
     return 0;
 }
