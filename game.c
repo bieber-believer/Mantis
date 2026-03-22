@@ -30,3 +30,115 @@ void getNumPlaying(int *numGamePlayers)
 
     }while(*numGamePlayers < MIN_GAME_PLAYERS || *numGamePlayers > MAX_GAME_PLAYERS);
 }
+
+/**
+ * 
+ */
+int usernameExists()
+{
+
+}
+
+/**
+ * 
+ */
+void registerPlayer()
+{
+
+}
+
+/**
+ * 
+ */
+void playerSelection()
+{
+
+}
+
+/**
+ * 
+ */
+int hasColor()
+{
+
+}
+
+/**
+ * 
+ */
+int getColorIndex()
+{
+
+}
+
+/**
+ * 
+ */
+Card drawCard()
+{
+
+}
+
+/**
+ * 
+ */
+void addToTank()
+{
+
+}
+
+/**
+ * 
+ */
+void shuffleAndDeal()
+{
+
+}
+
+/**
+ * 
+ */
+void tryToScore()
+{
+
+}
+
+/**
+ * 
+ */
+void tryToSteal()
+{
+
+}
+
+/**
+ * 
+ */
+void displayGameState()
+{
+
+}
+
+/**
+ * 
+ */
+int checkWinner()
+{
+
+}
+
+/**
+ * 
+ */
+void showResults()
+{
+
+}
+
+/**
+ * 
+ */
+void gameStart()
+{
+    
+}
