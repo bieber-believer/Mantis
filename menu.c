@@ -14,11 +14,27 @@
 /* ----- function implementation ----- */
 
 /**
+ * Calls functions needed to start a new game
  * 
+ * @param players The array of registered players
+ * @param numPlayers Number of registered players
+ * @param gamePlayers The array of players playing
+ * @param numGamePlayers Number of players playing
+ * @param deck The deck of cards
+ * @param deckSize The number of cards in the deck
+ * @param currSettings The current settings
  */
-void newGame()
+void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize, Settings currSettings)
 {
-
+        system("cls");
+    *deckSize = TOTAL_CARDS;
+    mantisToStruct(deck);
+    //call getNumPlaying()
+    getNumPlaying(numGamePlayers);
+    //call playerSelection()
+    playerSelection(players, numPlayers, gamePlayers, *numGamePlayers);
+    //call gameStart()
+    gameStart(players, *numPlayers, gamePlayers, *numGamePlayers, deck, deckSize, currSettings);
 }
 
 /**
