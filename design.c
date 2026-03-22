@@ -42,3 +42,18 @@ void pressAnyKey()
     getchar();
     iShowCursor();
 }
+
+/**
+ * Displays a header to be shows each turn
+ */
+void displayHeader()
+{
+    printf("         _\\|/_\n");
+    printf("         (o o)\n");
+    printf(" +----oOO-{_}-OOo---------------------+\n");
+    printf(" |                                    |\n");
+    printf(" |          M  A  N  T  I  S          |\n");
+    printf(" |           Game Ongoing             |\n");
+    printf(" |                                    |\n");
+    printf(" +------------------------------------+\n\n");
+}
