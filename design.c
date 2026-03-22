@@ -71,3 +71,25 @@ void displayDrawnCard(Card card)
     printf("|  %d  |\n", card.point);
     printf(".-----.\n");
 }
+
+/**
+ * Display a trophy
+ */
+void displayTrophy()
+{
+    iSetColor(I_COLOR_YELLOW);
+    printf("       _________\n");
+    printf("      '.       .'\n");
+    printf("       _\\:.   /_\n");
+    printf("      //|::   |\\\\\n");
+    printf("      \\\\|::   |//\n");
+    printf("       `\\::.  /`\n");
+    printf("         `\\ /`\n");
+    printf("           T\n");
+    printf("        __/ \\__\n");
+    printf("       |       |\n");
+    printf("jgs   _| GG EZ!|_\n");
+    printf("     |  ~~~~~~~  |\n");
+    printf("  ^^^^^^^^^^^^^^^^^^^\n\n");
+    iSetColor(I_COLOR_WHITE);
+}
