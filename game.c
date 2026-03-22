@@ -316,13 +316,13 @@ int getColorIndex(char color)
  * their tank, all cards of that color is moved to their sccore pile.
  * Otherwise the card is added to their tank.
  * 
- * @param gameDeck The game deck to draw from
- * @param gameDeckSize Number of cards reamining in the deck
+ * @param deck The game deck to draw from
+ * @param deckSize Number of cards reamining in the deck
  * @param player Current player whose turn is being resolved
  */
-void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player)
+void tryToScore(Card deck[], int *deckSize, GamePlayer *player)
 {
-    Card drawnCard = drawCard(gameDeck, gameDeckSize);
+    Card drawnCard = drawCard(deck, deckSize);
     int colorIndex = getColorIndex(drawnCard.front);
 
     printf("\nResolving turn for %s...\n\n", player->player->name);
@@ -357,13 +357,13 @@ void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player)
  * are put in the current player's tank. Otherwise, the drawn card is added to the target
  * player's tank
  * 
- * @param gameDeck The game deck to draw from
- * @param gameDeckSize Number of cards remaining in the deck
+ * @param deck The game deck to draw from
+ * @param deckSize Number of cards remaining in the deck
  * @param gamePlayers The array of all the players playing the game
  * @param numGamePlayers The number of players playing the game
  * @param currentPlayerIndex The index of the current player in gamePlayers
  */
-void tryToSteal(Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], int numGamePlayers, int currentPlayerIndex)
+void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int currentPlayerIndex)
 {
     Card drawnCard;
     int colorIndex;
@@ -400,7 +400,7 @@ void tryToSteal(Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], in
     targetIndex = choice - 1;
     
     //draw card and get the color index
-    drawnCard = drawCard(gameDeck, gameDeckSize);
+    drawnCard = drawCard(deck, deckSize);
     colorIndex = getColorIndex(drawnCard.front);
 
     printf("Resolving turn for %s...\n\n", gamePlayers[currentPlayerIndex].player->name);
@@ -437,10 +437,10 @@ void tryToSteal(Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], in
  * 
  * @param gamePlayers The players playing the game
  * @param numGamePlayers Number of players playing
- * @param gameDeck The game deck
- * @param gameDeckSize Number of cards remaining in the deck
+ * @param deck The game deck
+ * @param deckSize Number of cards remaining in the deck
  */
-void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card gameDeck[], int gameDeckSize)
+void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int deckSize)
 {
     int i;
 
@@ -452,58 +452,51 @@ void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card gameDec
     }
 
     printf(" ================================================\n");
-    printf("\n Top Deck: %s | Cards Remaining: %d\n\n", gameDeck[0].back, gameDeckSize);
+    printf("\n Top Deck: %s | Cards Remaining: %d\n\n", deck[0].back, deckSize);
 }
 
 /**
  * Shuffle the deck and deal 4 cards to each player
  * 
- * @param deck The original deck of cards
- * @param gameDeck The copy of deck that will be shuffled and used int the game
- * @param gameDeckSize The number of cards in the deck
+ * @param deck The deck of cards
+ * @param deckSize The number of cards in the deck
  * @param gamePlayers The players currently playing
  * @param numGamePlayers The number of players playing
  * @param seed The seed value used for shuffling
  * 
  * @pre playerSelection has been called and gamePlayers tanks are initialized to 0
  */
-void shuffleAndDeal(Card deck[], Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed)
+void shuffleAndDeal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed)
 {
     int i, j;
 
-    //put deck in gamedeck
-    for(i = 0; i < TOTAL_CARDS; i++)
-        gameDeck[i] = deck[i];
-
-    *gameDeckSize = TOTAL_CARDS;
-
     //shuffle the gamedeck
-    shuffle(gameDeck, *gameDeckSize, sizeof(Card), seed);
+    shuffle(deck, *deckSize, sizeof(Card), seed);
 
     //deal 4 cards (draw a card and add it to the tank)
     for(i = 0; i < numGamePlayers; i++)
         for(j = 0; j < 4; j++)
-            addToTank(&gamePlayers[i], drawCard(gameDeck, gameDeckSize));
+            addToTank(&gamePlayers[i], drawCard(deck, deckSize));
 }
 
 /**
  * Draws the top card from the deck and move the remaining cards forward
  * 
- * @param gameDeck The game deck to draw from
- * @param gameDeckSize number of cards in the deck
+ * @param deck The game deck to draw from
+ * @param deckSize number of cards in the deck
  * 
  * @return The drawn card
  * @pre gameDeckSize is greater than 0
  */
-Card drawCard(Card gameDeck[], int *gameDeckSize)
+Card drawCard(Card deck[], int *deckSize)
 {
     int i;
-    Card drawn = gameDeck[0];
+    Card drawn = deck[0];
 
-    for(i = 0; i < *gameDeckSize - 1; i++)
-        gameDeck[i] = gameDeck[i + 1];
+    for(i = 0; i < *deckSize - 1; i++)
+        deck[i] = deck[i + 1];
 
-    *gameDeckSize -= 1;
+    *deckSize -= 1;
 
     return drawn;
 }
@@ -526,11 +519,11 @@ void addToTank(GamePlayer *gamePlayer, Card card)
  * 
  * @param gamePlayers The players playing the game
  * @param numGamePlayers Number of players playing the game
- * @param gameDeckSize Number of cards remaining in the deck
+ * @param deckSize Number of cards remaining in the deck
  * @param winningPoints The points the players must have in order to win
  * @return The index number of the winner, -1 if no winner yet
  */
-int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, int winnningPoints)
+int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int deckSize, int winnningPoints)
 {
     int winnerIndex = -1;
     int i, j;
@@ -543,8 +536,8 @@ int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, 
         if(gamePlayers[i].score >= winnningPoints)
             winnerIndex = i;
 
-    //if draw pile runs out and no player 
-    if(gameDeckSize == 0 && winnerIndex == -1)
+    //if draw pile runs out and no player got score >= winningPoints
+    if(deckSize == 0 && winnerIndex == -1)
     {
         for(i = 0; i < numGamePlayers; i++)
         {
@@ -594,12 +587,11 @@ int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, 
  * @param numPlayers Number of registered players
  * @param gamePlayers The array of players playing the game
  * @param numGamePlayers Number of players playing
- * @param deck The original unshuffled deck of cards
- * @param gameDeck The shuffled deck used in the game
- * @param gameDeckSize Number of cards remaining in the deck
+ * @param deck The deck of cards
+ * @param deckSize Number of cards remaining in the deck
  * @param currSettings The current game settings
  */
-void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings)
+void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int *deckSize, Settings currSettings)
 {
     int choice;
     int winnderIndex = -1;
@@ -615,9 +607,9 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
     printf(" |           Game Starting            |\n");
     printf(" |                                    |\n");
     printf(" +------------------------------------+\n\n");
-    shuffleAndDeal(deck, gameDeck, gameDeckSize,gamePlayers, numGamePlayers, currSettings.seed);
+    shuffleAndDeal(deck, deckSize, gamePlayers, numGamePlayers, currSettings.seed);
     printf("Deck shuffled! Dealing Tank cards...\n\n");
-    displayGameState(gamePlayers, numGamePlayers, gameDeck, *gameDeckSize);
+    displayGameState(gamePlayers, numGamePlayers, deck, *deckSize);
     printf("Press any key...\n");
     getchar();
 
@@ -628,7 +620,7 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
 
         //display game state
         displayHeader();
-        displayGameState(gamePlayers, numGamePlayers, gameDeck, *gameDeckSize);
+        displayGameState(gamePlayers, numGamePlayers, deck, *deckSize);
 
         //ask player want they wanna do
         printf("%s, what would you like to do?\n", gamePlayers[currentPlayerIndex].player->name);
@@ -639,9 +631,9 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
         while(getchar() != '\n');
 
         if(choice == 1)
-            tryToScore(gameDeck, gameDeckSize, &gamePlayers[currentPlayerIndex]);
+            tryToScore(deck, deckSize, &gamePlayers[currentPlayerIndex]);
         else if(choice == 2)
-            tryToSteal(gameDeck, gameDeckSize, gamePlayers, numGamePlayers, currentPlayerIndex);
+            tryToSteal(deck, deckSize, gamePlayers, numGamePlayers, currentPlayerIndex);
         else
         {
             printf("Invalid input. Try again.\n");
@@ -652,7 +644,7 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
         //go to next play only if a valid choice was made
         if(choice == 1 || choice == 2)
         {
-            winnderIndex = checkWinner(gamePlayers, numGamePlayers, *gameDeckSize, currSettings.winningPoints);
+            winnderIndex = checkWinner(gamePlayers, numGamePlayers, *deckSize, currSettings.winningPoints);
             
             if(currentPlayerIndex == numGamePlayers - 1)
                 currentPlayerIndex = 0;

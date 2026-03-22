@@ -104,26 +104,26 @@ void registerPlayer(Player players[], int *numPlayers, int *success);
 void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[], int numGamePlayers);
 int hasColor(Card card, GamePlayer player);
 int getColorIndex(char color);
-void tryToScore(Card gameDeck[], int *gameDeckSize, GamePlayer *player);
-void tryToSteal(Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], int numGamePlayers, int currentPlayerIndex);
-void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card gameDeck[], int gameDeckSize);
-void shuffleAndDeal(Card deck[], Card gameDeck[], int *gameDeckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed);
-Card drawCard(Card gameDeck[], int *gameDeckSize);
+void tryToScore(Card deck[], int *deckSize, GamePlayer *player);
+void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int currentPlayerIndex);
+void displayGameState(GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int deckSize);
+void shuffleAndDeal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGamePlayers, int seed);
+Card drawCard(Card deck[], int *deckSize);
 void addToTank(GamePlayer *gamePlayer, Card card);
-int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int gameDeckSize, int winningPoints);
+int checkWinner(GamePlayer gamePlayers[], int numGamePlayers, int deckSize, int winningPoints);
 void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnerIndex);
-void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings);
+void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int *deckSize, Settings currSettings);
 
 // menu.c
 void displayTitle();
-void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings);
+void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize, Settings currSettings);
 void sortByWins(Player players[], Player topWins[], int numPlayers);
 void sortByScore(Player players[], Player topScore[], int numPlayers);
 void displayTop10ByWins(Player players[], Player topWins[], int numPlayers);
 void displayTop10ByScore(Player players[], Player topScore[], int numPlayers);
 void displayTop10(Player players[], Player topWins[], Player topScore[], int numPlayers);
 void changeSettings(Settings *currSettings);
-void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize);
+void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers, Card deck[], int *deckSize);
 
 // mp_template.c
 void mantisToStruct(Card deck[]);

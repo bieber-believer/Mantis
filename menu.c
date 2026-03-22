@@ -85,15 +85,17 @@ void displayAcknowledgements()
 /**
  * Compiles the functions needed for a new game
  */
-void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize, Settings currSettings)
+void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize, Settings currSettings)
 {
     system("cls");
+    *deckSize = TOTAL_CARDS;
+    mantisToStruct(deck);
     //call getNumPlaying()
     getNumPlaying(numGamePlayers);
     //call playerSelection()
     playerSelection(players, numPlayers, gamePlayers, *numGamePlayers);
     //call gameStart()
-    gameStart(players, *numPlayers, gamePlayers, *numGamePlayers, deck, gameDeck, gameDeckSize, currSettings);
+    gameStart(players, *numPlayers, gamePlayers, *numGamePlayers, deck, deckSize, currSettings);
 }
 
 /**
@@ -369,7 +371,7 @@ void changeSettings(Settings *currSettings)
  * @param currSetting The current game settings
  * @param numGamePlayers
  */
-void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers, Card deck[], Card gameDeck[], int *gameDeckSize)
+void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, GamePlayer gamePlayers[], Settings *currSettings, int *numGamePlayers, Card deck[], int *deckSize)
 {
     int loop = 1; // variable to keep the loop going
     int choice;  // where users choice will be stored
@@ -396,7 +398,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
                 printf("Enjoy the game!\n\n");
                 printf("Press any key...\n");
                 getchar();
-                newGame(players, numPlayers, gamePlayers, numGamePlayers, deck, gameDeck, gameDeckSize, *currSettings);
+                newGame(players, numPlayers, gamePlayers, numGamePlayers, deck, deckSize, *currSettings);
                 break;
             case 2:
                 system("cls");
