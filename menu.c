@@ -155,11 +155,34 @@ void displayTop10Wins(Player topWins[], int numPlayers)
 }
 
 /**
+ * Displays the top 10 players with the highest score
  * 
+ * @param topScore The array with the sorted players by highest score
+ * @param numPlayers Number of registered players
  */
-void displayTop10Score()
+void displayTop10Score(Player topScore[], int numPlayers)
 {
+    int i;
 
+    printf("Top 10 Players with the highest score:\n\n");
+    printf("------------------------------------------------------------------\n");
+    printf("%-10s %-36s %-10s %-10s\n", "Rank", "Username", "Wins", "Score");
+    printf("------------------------------------------------------------------\n");
+
+    if(numPlayers > 10)
+    {
+        for(i = 0; i < 10; i++)
+        {
+            printf("%-10d %-36s %-10d %-10d\n", i+1, topScore[i].name, topScore[i].wins, topScore[i].highestScore);
+        }
+    }
+    else
+    {
+        for(i = 0; i < numPlayers; i++)
+        {
+            printf("%-10d %-36s %-10d %-10d\n", i+1, topScore[i].name, topScore[i].wins, topScore[i].highestScore);
+        }
+    }
 }
 
 /**
