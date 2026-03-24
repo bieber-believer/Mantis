@@ -28,7 +28,7 @@ void displayTitle()
     iSetColor(I_COLOR_CYAN);
     printf("|  |  |  |  /  _____  \\  |  |\\   |     |  |     |  | .----)   |  \n");
     iSetColor(I_COLOR_PURPLE);
-    printf("|__|  |__| /__/     \\__\\ |__| \\__|     |__|     |__| |_______/    \n");
+    printf("|__|  |__| /__/     \\__\\ |__| \\__|     |__|     |__| |_______/    \n\n");
     iSetColor(I_COLOR_WHITE);
 }
 
