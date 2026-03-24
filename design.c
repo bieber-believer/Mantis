@@ -52,7 +52,9 @@ void displayHeader()
     printf("         (o o)\n");
     printf(" +----oOO-{_}-OOo---------------------+\n");
     printf(" |                                    |\n");
-    printf(" |          M  A  N  T  I  S          |\n");
+    printf(" |         ");
+    printRainbow("M  A  N  T  I  S");
+    printf("          |\n");
     printf(" |           Game Ongoing             |\n");
     printf(" |                                    |\n");
     printf(" +------------------------------------+\n\n");
