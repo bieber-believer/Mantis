@@ -139,7 +139,7 @@ void playerSelection(Player players[], int *numPlayers, GamePlayer gamePlayers[]
 {
     int registered; // 1 if player has been successfully registered
     int numSelected = 0; // the number of players that has been selected
-    int choice;
+    int choice = -1;
     int i, j;
 
     //set picked variable in players to 0
@@ -383,7 +383,7 @@ void tryToSteal(Card deck[], int *deckSize, GamePlayer gamePlayers[], int numGam
 {
     Card drawnCard;
     int colorIndex;
-    int i, choice, valid;
+    int i, valid, choice = -1;
     int targetIndex; // the index of the player to be stolen from
 
     //ask who to steal from
@@ -631,7 +631,7 @@ void showResults(GamePlayer gamePlayers[], int numGamePlayers, int winnderIndex)
  */
 void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int numGamePlayers, Card deck[], int *deckSize, Settings currSettings)
 {
-    int choice;
+    int choice = -1;
     int winnderIndex = -1;
     int currentPlayerIndex = 0;
 

@@ -212,7 +212,7 @@ void displayTop10Score(Player topScore[], int numPlayers)
 void displayTop10(Player players[], Player topWins[], Player topScore[], int numPlayers)
 {
     int loop = 1;
-    int choice;
+    int choice = -1;
 
     while(loop == 1)
     {
@@ -359,7 +359,7 @@ void displayAcknowledgements()
 void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPlayers, Settings *currSettings, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize)
 {
     int loop = 1; // variable to keep the loop going
-    int choice;  // where users choice will be stored
+    int choice = -1;  // where users choice will be stored
     while(loop == 1)
     {
         system("cls");
