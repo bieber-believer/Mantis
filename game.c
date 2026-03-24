@@ -660,7 +660,8 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
         displayGameState(gamePlayers, numGamePlayers, deck, *deckSize);
 
         //ask player want they wanna do
-        printf("%s, what would you like to do?\n", gamePlayers[currentPlayerIndex].player->name);
+        printRainbow(gamePlayers[currentPlayerIndex].player->name);
+        printf(", what would you like to do?\n");
         printf("  [1] Try to Score\n");
         printf("  [2] Try to Steal\n\n");
         printf(">> ");
