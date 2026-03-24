@@ -298,10 +298,20 @@ void changeSettings(Settings *currSettings)
         switch (choice)
         {
             case 1:
-                printf("\nNew Winning Points?\n");
-                printf(">> ");
-                scanf("%d", &currSettings->winningPoints);
-                while(getchar() != '\n');
+                do
+                {
+                    printf("\nNew Winning Points? (minimum 5)\n");
+                    printf(">> ");
+                    scanf("%d", &currSettings->winningPoints);
+                    while(getchar() != '\n');
+
+                    if(currSettings->winningPoints < 5)
+                    {
+                        iSetColor(I_COLOR_RED);
+                        printf("Winning points must be at least 5.\n");
+                        iSetColor(I_COLOR_WHITE);
+                    }
+                }while(currSettings->winningPoints < 5);
                 break;
             case 2:
                 printf("\nNew Shuffle Seed?\n");
