@@ -108,34 +108,42 @@ void printRainbow(char *str)
 
     for(i = 0; i < strlen(str); i++)
     {
-        switch(colorIndex)
+        if(str[i] == ' ')
         {
-            case 0:
-                iSetColor(I_COLOR_RED);
-                break;
-            case 1:
-                iSetColor(I_COLOR_YELLOW);
-                break;
-            case 2:
-                iSetColor(I_COLOR_GREEN);
-                break;
-            case 3:
-                iSetColor(I_COLOR_BLUE);
-                break;
-            case 4:
-                iSetColor(I_COLOR_CYAN);
-                break;
-            case 5:
-                iSetColor(I_COLOR_PURPLE);
-                break;
+            iSetColor(I_COLOR_WHITE);
+            printf(" ");
         }
+        else
+        {
+            switch(colorIndex)
+            {
+                case 0:
+                    iSetColor(I_COLOR_RED);
+                    break;
+                case 1:
+                    iSetColor(I_COLOR_YELLOW);
+                    break;
+                case 2:
+                    iSetColor(I_COLOR_GREEN);
+                    break;
+                case 3:
+                    iSetColor(I_COLOR_BLUE);
+                    break;
+                case 4:
+                    iSetColor(I_COLOR_CYAN);
+                    break;
+                case 5:
+                    iSetColor(I_COLOR_PURPLE);
+                    break;
+            }
 
-        printf("%c", str[i]);
+            printf("%c", str[i]);
 
-        colorIndex++;
+            colorIndex++;
 
-        if(colorIndex > 5)
-            colorIndex = 0;
+            if(colorIndex > 5)
+                colorIndex = 0;
+        }
     }
 
     iSetColor(I_COLOR_WHITE);
