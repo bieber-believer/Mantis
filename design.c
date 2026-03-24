@@ -93,3 +93,48 @@ void displayTrophy()
     printf("  ^^^^^^^^^^^^^^^^^^^\n\n");
     iSetColor(I_COLOR_WHITE);
 }
+
+/**
+ * Prints out a string to be the color of the rainbow
+ * 
+ * @param str The string to be printed out in rainbow
+ */
+void printRainbow(char *str)
+{
+    int i;
+    int colorIndex = 0;
+
+    for(i = 0; i < strlen(str); i++)
+    {
+        switch(colorIndex)
+        {
+            case 0:
+                iSetColor(I_COLOR_RED);
+                break;
+            case 1:
+                iSetColor(I_COLOR_YELLOW);
+                break;
+            case 2:
+                iSetColor(I_COLOR_GREEN);
+                break;
+            case 3:
+                iSetColor(I_COLOR_BLUE);
+                break;
+            case 4:
+                iSetColor(I_COLOR_CYAN);
+                break;
+            case 5:
+                iSetColor(I_COLOR_PURPLE);
+                break;
+        }
+
+        printf("%c", str[i]);
+
+        colorIndex++;
+
+        if(colorIndex > 5)
+            colorIndex = 0;
+    }
+
+    iSetColor(I_COLOR_WHITE);
+}
