@@ -54,7 +54,7 @@ void displayHeader()
     printf(" |                                    |\n");
     printf(" |         ");
     printRainbow("M  A  N  T  I  S");
-    printf("          |\n");
+    printf("           |\n");
     printf(" |           Game Ongoing             |\n");
     printf(" |                                    |\n");
     printf(" +------------------------------------+\n\n");
