@@ -641,7 +641,9 @@ void gameStart(Player players[], int numPlayers, GamePlayer gamePlayers[], int n
     printf("         (o o)\n");
     printf(" +----oOO-{_}-OOo---------------------+\n");
     printf(" |                                    |\n");
-    printf(" |          M  A  N  T  I  S          |\n");
+    printf(" |         ");
+    printRainbow("M  A  N  T  I  S");
+    printf("           |\n");
     printf(" |           Game Starting            |\n");
     printf(" |                                    |\n");
     printf(" +------------------------------------+\n\n");
