@@ -364,7 +364,7 @@ void mainMenu(Player players[], Player topWins[], Player topScore[], int *numPla
     {
         system("cls");
         displayTitle();
-        printf("\nMain Menu\n");
+        printf("Main Menu\n");
         printf("[1] New Game\n");
         printf("[2] How To Play\n");
         printf("[3] View Statistics\n");
