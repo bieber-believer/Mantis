@@ -73,6 +73,7 @@ void pressAnyKey();
 void displayHeader();
 void displayDrawnCard(Card card);
 void displayTrophy();
+void printRainbow(char *str);
 
 //menu.c
 void newGame(Player players[], int *numPlayers, GamePlayer gamePlayers[], int *numGamePlayers, Card deck[], int *deckSize, Settings currSettings);
